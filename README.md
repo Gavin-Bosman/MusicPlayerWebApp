@@ -1,4 +1,4 @@
-# music-player
+# music-player web application
 
 ## Project setup
 ```
@@ -22,3 +22,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Authors
+Gavin Bosman - SID: 100781902

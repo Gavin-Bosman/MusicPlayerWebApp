@@ -1,0 +1,25 @@
+
+// rewind arrow
+<svg width="82" height="59" viewBox="0 0 82 59" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.25 29.5L66.5 55.0477L66.5 3.95225L22.25 29.5Z" fill="white"/>
+<path d="M0 29.5477L44.25 55.0955L44.25 3.99998L0 29.5477Z" fill="white"/>
+</svg>
+
+// fast forward arrow
+<svg width="82" height="59" viewBox="0 0 82 59" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M59 29.5L14.75 55.0477L14.75 3.95225L59 29.5Z" fill="white"/>
+<path d="M81.25 29.5477L37 55.0955L37 3.99998L81.25 29.5477Z" fill="white"/>
+</svg>
+
+// pause button
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="40" cy="40" r="40" fill="white"/>
+<line x1="47" y1="25" x2="47" y2="55" stroke="black" stroke-width="6"/>
+<line x1="33" y1="25" x2="33" y2="55" stroke="black" stroke-width="6"/>
+</svg>
+
+
+// rounded rectangle scrub bar
+<svg width="902" height="8" viewBox="0 0 902 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 4C0 1.79086 1.79086 0 4 0H898C900.209 0 902 1.79086 902 4C902 6.20914 900.209 8 898 8H4C1.79086 8 0 6.20914 0 4Z" fill="#4D4D4D"/>
+</svg>

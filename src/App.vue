@@ -4,12 +4,12 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MainPlayer from './components/MainPlayer.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MainPlayer
   }
 }
 </script>
