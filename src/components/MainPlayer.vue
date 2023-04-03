@@ -1,5 +1,9 @@
-<template></template>
+<template>
+    <section>Just Some Text</section>
+</template>
 
 <script></script>
 
-<style></style>
+<style lang="scss">
+
+</style>

@@ -1,6 +1,9 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+
+  <!-- Main Window/Component -->
+  <MainPlayer />
+  
 </template>
 
 <script>
@@ -15,12 +18,21 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+  // Declaring color variables
+  $color-primary: #69FFE8;
+  $color-primary-dark: #3EC6B2;
+  $color-dark: #181818;
+  $color-white: #ffffff;
+
+  // Overall App/Body
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    background-color: $color-dark;
+  }
+
 </style>
