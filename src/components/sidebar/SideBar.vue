@@ -172,7 +172,7 @@ export default {
         height: 65%;
         overflow-x: hidden;
         overflow-y: scroll;
-        box-shadow: inset -4px 0px 10px 1px rgba(0, 0, 0, 0.185);
+        box-shadow: inset -4px 0px 10px 1px rgba(0, 0, 0, 0.055);
     }
     
 </style>
