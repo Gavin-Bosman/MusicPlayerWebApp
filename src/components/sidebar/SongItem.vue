@@ -105,6 +105,9 @@ export default {
             &:hover {
                 background-color: $color-primary-lighter;
             }
+            &:active {
+                background-color: $color-primary-darker;
+            }
 
             &_icon {
                 margin-left: 4px; // For better centering
