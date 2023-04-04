@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import MainPlayer from './components/MainPlayer.vue'
+import MainPlayer from './components/MainPlayer'
 
 export default {
   name: 'App',
@@ -19,20 +19,27 @@ export default {
 
 <style lang="scss">
 
-  // Declaring color variables
-  $color-primary: #69FFE8;
-  $color-primary-dark: #3EC6B2;
-  $color-dark: #181818;
-  $color-white: #ffffff;
+  @import "./sass/variables";
 
-  // Overall App/Body
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  // Overall Body/App
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+  html {
+    scroll-behavior: smooth !important;
+    box-sizing: border-box;
+    font-size: 62.5%;
+    overflow-x: hidden;
   }
   body {
-    background-color: $color-dark;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400; //Regular
+    line-height: 3;
+    overflow-x: hidden;
   }
 
 </style>
