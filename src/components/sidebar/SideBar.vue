@@ -16,6 +16,14 @@
             <button class="search__button"><img class="search__button_icon" src="../../assets/search_icon.svg" alt="Search Icon"></button>
         </form>
 
+        <!-- Song list begins here -->
+        <h2 class="songs__header">Songs</h2>
+
+        <!-- Scrollable div -->
+        <div class="songslist">
+            <SongItem />
+        </div>
+
     </nav>
 </template>
 
@@ -23,10 +31,13 @@
 
 
 <script>
+
+import SongItem from './SongItem';
+
 export default {
   name: 'SideBar',
   components: {
-
+    SongItem
   }
 }
 </script>
@@ -41,14 +52,14 @@ export default {
 
     // General sidebar Styling
     .sidebar {
-        position: fixed;
+        position: relative;
         top: 0;
         left: 0;
         height: 100vh;
-        width: 30vw;
+        flex: 0 0 30%;
         opacity: 95%;
         background-color: $color-dark;
-        padding: 5rem;
+        padding: 3.5rem 5rem;
     }
 
     // (Logo and Name) Styling
@@ -132,4 +143,25 @@ export default {
             }
         }
     }
+
+
+    // Songs
+    .songs__header {
+        margin-top: 2rem;
+        color: $color-white;
+        font-weight: 400;
+        letter-spacing: 1px;
+        font-size: 1.5rem;
+        border-bottom: 1px solid $color-grey-darker;
+    }
+
+    .songslist {
+        position: relative;
+        margin-top: 2rem;
+        width: 100%;
+        height: 65%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    
 </style>

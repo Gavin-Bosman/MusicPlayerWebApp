@@ -1,8 +1,9 @@
 <!-- THIS IS THE MAIN VIEW/WINDOW -->
 
 <template>
-    <div class="main__window">
+    <div class="main__window d-flex">
         <SideBar />
+        <PlayerControls />
     </div>
 </template>
 
@@ -11,11 +12,13 @@
 <script>
 
 import SideBar from './sidebar/SideBar';
+import PlayerControls from './player/PlayerControls';
 
 export default {
   name: 'MainPlayer',
   components: {
-    SideBar
+    SideBar,
+    PlayerControls
   }
 }
 </script>
@@ -31,7 +34,7 @@ export default {
         min-height: 100vh;
         background-color: $color-primary;
         background: $color-dark;
-        background: linear-gradient(0deg, rgba(24,24,24,1) 0%, rgba(37,61,57,1) 66%, rgba(50,96,89,1) 100%, rgba(58,119,110,1) 100%, rgba(68,148,136,1) 100%, rgba(95,227,207,1) 100%, rgba(105,255,232,1) 100%);
+        background: linear-gradient(0deg, rgb(24, 24, 24) 0%, rgb(37, 61, 57) 88%, rgb(50, 96, 89) 100%, rgb(58, 119, 110) 100%, rgb(68, 148, 136) 100%, rgb(95, 227, 207) 100%, rgb(105, 255, 232) 100%);
     }
 
 </style>
