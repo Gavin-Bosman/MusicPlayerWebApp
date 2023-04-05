@@ -21,7 +21,7 @@
                 <div class="player__contents_controls-progressbar">
 
                     <!-- Timestamp -->
-                    <p class="player__contents_controls-progressbar--timestamp">1:42</p>
+                    <p class="player__contents_controls-progressbar--timestamp">3:02</p>
 
                     <!-- The bar -->
                     <div class="player__contents_controls-progressbar--bar">
