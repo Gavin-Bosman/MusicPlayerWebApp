@@ -37,19 +37,19 @@
                 <div class="player__contents_controls-buttons">
 
                     <!-- Prev Button -->
-                    <div class="player__contents_controls-buttons--prevbox button-animation-2">
+                    <button class="player__contents_controls-buttons--prevbox button-animation-2">
                         <img class="player__contents_controls-buttons--prevbox---icon" src="../../assets/prev_icon.svg" alt="Prev. Button">
-                    </div>
+                    </button>
 
                     <!-- Play/Pause Button -->
-                    <div class="player__contents_controls-buttons--playpausebox button-animation-1">
+                    <button class="player__contents_controls-buttons--playpausebox button-animation-1">
                         <img class="player__contents_controls-buttons--playpausebox---icon" src="../../assets/pause_icon.svg" alt="Pause/Play Button">
-                    </div>
+                    </button>
 
                     <!-- Next Button -->
-                    <div class="player__contents_controls-buttons--nextbox button-animation-2">
+                    <button class="player__contents_controls-buttons--nextbox button-animation-2">
                         <img class="player__contents_controls-buttons--nextbox---icon" src="../../assets/next_icon.svg" alt="Next Button">
-                    </div>
+                    </button>
 
                 </div>
 
@@ -209,6 +209,8 @@ export default {
                     &--prevbox {
 
                         margin-top: 1.0rem;
+                        background-color: transparent;
+                        border: none;
                         width: 5rem;
                         height: 5rem;
                         display: flex;
@@ -247,6 +249,8 @@ export default {
                     &--nextbox {
 
                         margin-top: 1.0rem;
+                        background-color: transparent;
+                        border: none;
                         width: 5rem;
                         height: 5rem;
                         display: flex;
