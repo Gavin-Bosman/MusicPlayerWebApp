@@ -57,7 +57,7 @@ export default {
             height: 7rem;
             border-radius: 5px;
             overflow: hidden;
-            object-fit: fill;
+            object-fit: cover;
             display: flex;
             justify-content: center;
             
