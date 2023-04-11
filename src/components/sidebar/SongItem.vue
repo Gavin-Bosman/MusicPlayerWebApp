@@ -4,17 +4,18 @@
     <div class="songitem">
         <!-- Image -->
         <figure class="songitem__coverbox">
-            <img class="songitem__coverbox_coverimage" src="../../assets/imaginedragons_enemy_photo.jpg" alt="Album Cover Image">
+            <!-- *Image address/path/name needs to be passed as a prop* -->
+            <img id="albumCover" class="songitem__coverbox_coverimage" src="../../assets/imaginedragons_enemy_photo.jpg" alt="Album Cover Image">
         </figure>
         
         <!-- Song and Artist Name -->
         <div class="songitem__details">
-            <h3 class="songitem__details_songname">Enemy</h3>
-            <h4 class="songitem__details_artistname">Imagine Dragons</h4>
+            <h3 class="songitem__details_songname">{{ songname }}</h3>
+            <h4 class="songitem__details_artistname">{{ artistname }}</h4>
         </div>
 
         <!-- Play/Pause Button -->
-        <button class="songitem__button">
+        <button class="songitem__button" @click="togglePlay">
             <img class="songitem__button_icon" src="../../assets/play_icon.svg" alt="Play/Pause Icon">
         </button>
     </div>
@@ -26,8 +27,35 @@
 <script>
 export default {
   name: 'SongItem',
-  components: {
 
+  props: {
+    songname: {
+        type: String,
+        default: '- - -'
+    },
+    artistname: {
+        type: String,
+        default: '- - -'
+    },
+    coverimageSrc: {
+        type: String,
+        default: '../../assets/default_coverimage.png'
+    }
+  },
+
+  data() {
+    return {
+      isPlaying: false,
+      playIcon: '../../assets/play_icon.svg',
+      pauseIcon: '../../assets/pause_icon.svg'
+    };
+  },
+
+  methods: {
+    togglePlay() {
+      this.isPlaying = !this.isPlaying;
+      this.playIcon = this.isPlaying ? this.pauseIcon : '../../assets/play_icon.svg';
+    }
   }
 }
 </script>

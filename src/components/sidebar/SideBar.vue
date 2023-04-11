@@ -21,17 +21,7 @@
 
         <!-- Scrollable div -->
         <div class="songslist">
-            <SongItem />
-            <SongItem />
-            <SongItem />
-            <SongItem />
-            <SongItem />
-            <SongItem />
-            <SongItem />
-            <SongItem />
-            <SongItem />
-            <SongItem />
-            <SongItem />
+            <SongItem songname="Enemy" artistname="Imagine Dragons" coverimageSrc/>
         </div>
 
     </nav>
