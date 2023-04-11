@@ -8,6 +8,9 @@
                 <img class="brandbox__logobox_logo" src="../../assets/logo_white_stroke.svg" alt="Audiowave Logo">
             </div>
             <h1 class="brandbox__name">Audio<span class="brandbox__name_span">wave</span></h1>
+
+            <!-- Expand/Collapse Button -->
+            <button class="sidebar__button">></button>
         </div>
 
         <!-- The Search Bar -->
@@ -60,6 +63,34 @@ export default {
         opacity: 95%;
         background-color: $color-dark;
         padding: 3.5rem 5rem;
+
+
+        &__button {
+            font-family: sans-serif !important;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-left: auto;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            color: #c9c9c9;
+            background-color: $color-grey-dark;
+            cursor: pointer;
+            box-shadow: 0px 3px 7px 0px #00000041;
+            transform: translateX(7rem);
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                background-color: $color-grey-darker;
+            }
+            &:active {
+                background-color: rgb(22, 22, 22);
+            }
+        }
     }
 
     // (Logo and Name) Styling

@@ -139,7 +139,7 @@ export default {
             }
 
             &_icon {
-                margin-left: 4px; // For better centering
+                //margin-left: 4px; // For better centering
                 width: 35%;
             }
         }
