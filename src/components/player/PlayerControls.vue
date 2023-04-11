@@ -80,7 +80,8 @@ export default {
     @import "../../sass/utilityClasses";
 
     .player {
-        flex: 0 0 70%;
+        //flex: 0 0 70%;
+        flex-grow: 1;
 
         display: flex;
         align-items: center;
