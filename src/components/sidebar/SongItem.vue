@@ -5,7 +5,7 @@
         <!-- Image -->
         <figure class="songitem__coverbox">
             <!-- *Image address/path/name needs to be passed as a prop* -->
-            <img id="albumCover" class="songitem__coverbox_coverimage" src="../../assets/imaginedragons_enemy_photo.jpg" alt="Album Cover Image">
+            <img id="albumCover" class="songitem__coverbox_coverimage" :src="coverimageSrc" alt="Album Cover Image">
         </figure>
         
         <!-- Song and Artist Name -->
@@ -39,7 +39,7 @@ export default {
     },
     coverimageSrc: {
         type: String,
-        default: '../../assets/default_coverimage.png'
+        default: 'https://i.pinimg.com/originals/11/fd/5c/11fd5ce70f45a794e02c1a8dc94d742d.png'
     }
   },
 

@@ -21,7 +21,7 @@
 
         <!-- Scrollable div -->
         <div class="songslist">
-            <SongItem songname="Enemy" artistname="Imagine Dragons" coverimageSrc/>
+            <SongItem songname="Enemy" artistname="Imagine Dragons" coverimageSrc="https://assets.3dtotal.com/arcane-imagine-dragons.edcsyl.jpg"/>
         </div>
 
     </nav>
