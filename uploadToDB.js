@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const { MongoClient, Binary } = require('mongodb');
 
-
 // Connection String
 
 // const MONGODB_CONNECTION_STRING = 'mongodb://localhost:27017';
@@ -15,9 +14,20 @@ const COLLECTION_NAME = 'songs';
 // Read file, make into object, store in DB
 async function storeSong(file_path, fileName) {
   const binData = new Binary(fs.readFileSync(file_path));
+
+  // Use dynamic import to load the music-metadata library
+  const METADATA = await import('music-metadata');
+
+  // Store metadata as well
+  const metadata = await METADATA.parseFile(file_path);
+
   const fileData = {
     fileName: fileName,
     data: binData,
+    artist: metadata.common.artist,
+    album: metadata.common.album,
+    length: metadata.format.duration,
+    albumCover: metadata.common.picture ? metadata.common.picture[0].data : null
   };
 
   // Create new client instance

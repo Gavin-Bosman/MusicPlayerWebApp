@@ -5,13 +5,14 @@
         <div class="player__contents">
             <!-- Image -->
             <div class="player__contents_coverphotobox">
-                <img class="player__contents_coverphotobox-photo" src="../../assets/imaginedragons_enemy_photo.jpg" alt="Album Image">
+                <!-- <img class="player__contents_coverphotobox-photo" src="../../assets/imaginedragons_enemy_photo.jpg" alt="Album Image"> -->
+                <img class="player__contents_coverphotobox-photo" src="../../assets/NF-HOPE.png" alt="Album Image">
             </div>
 
             <!-- Song and Artist Name -->
             <div class="player__contents_details">
-                <h3 class="player__contents_details-songname">Enemy</h3>
-                <h4 class="player__contents_details-artistname">Imagine Dragons</h4>
+                <h3 class="player__contents_details-songname">SUFFICE</h3>
+                <h4 class="player__contents_details-artistname">NF</h4>
             </div>
 
             <!-- Progress Bar and Controls -->

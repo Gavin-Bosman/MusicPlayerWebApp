@@ -40,6 +40,7 @@ export default {
     coverimageSrc: {
         type: String,
         default: 'https://i.pinimg.com/originals/11/fd/5c/11fd5ce70f45a794e02c1a8dc94d742d.png'
+        
     }
   },
 

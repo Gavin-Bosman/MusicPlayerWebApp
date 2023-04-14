@@ -24,7 +24,11 @@
 
         <!-- Scrollable div -->
         <div class="songslist">
-            <SongItem songname="Enemy" artistname="Imagine Dragons" coverimageSrc="https://assets.3dtotal.com/arcane-imagine-dragons.edcsyl.jpg"/>
+            <!-- <SongItem songname="Enemy" artistname="Imagine Dragons" coverimageSrc="https://assets.3dtotal.com/arcane-imagine-dragons.edcsyl.jpg"/> -->
+            <!-- <SongItem songname="SUFFICE" artistname="NF" coverimageSrc="../../assets/NF-HOPE.png"/> -->
+            <SongItem songname="SUFFICE" artistname="NF" :coverimageSrc="require('@/assets/NF-HOPE.png')"/>
+
+
         </div>
 
     </nav>
