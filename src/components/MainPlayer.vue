@@ -55,7 +55,7 @@ export default {
       }
     },
     playSong(song) {
-      this.playingURL = `http://localhost:5000/api/songs/name/${song}`;
+      this.playingURL = `http://localhost:5000/api/songs/fileName/${song}`;
       // this.fetchSong(song);
       // console.log(this.songs[0].data);
       // console.log(this.playingURL)

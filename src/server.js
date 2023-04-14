@@ -61,8 +61,8 @@ app.get('/api/songs/id/:id', async (req, res) => {
 });
 
 // Route to get a song by name
-app.get('/api/songs/name/:name', async (req, res) => {
-  const name = req.params.fileName;
+app.get('/api/songs/fileName/:fileName', async (req, res) => {
+  const fileName = req.params.fileName;
 
   try {
     const client = new MongoClient(MONGODB_CONNECTION_STRING, {
@@ -70,7 +70,7 @@ app.get('/api/songs/name/:name', async (req, res) => {
     });
     await client.connect();
     const collection = client.db(DATABASE_NAME).collection(COLLECTION_NAME);
-    const song = await collection.findOne({ name: name });
+    const song = await collection.findOne({ fileName: fileName });
 
     if (!song) {
       res.status(404).send('Song could not be found');
