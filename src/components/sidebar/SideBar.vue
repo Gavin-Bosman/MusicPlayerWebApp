@@ -25,10 +25,10 @@
         <!-- Scrollable div -->
         <div class="songslist">
             <!-- <SongItem songname="Enemy" artistname="Imagine Dragons" coverimageSrc="https://assets.3dtotal.com/arcane-imagine-dragons.edcsyl.jpg"/> -->
-            <SongItem songname="SUFFICE" artistname="NF" coverimageSrc="../../assets/NF-HOPE.png"/>
+            <SongItem songname="SUFFICE" artistname="NF" :coverimageSrc="require('@/assets/NF-HOPE.png')"/>
 
             <!-- Fetch List of Songs from Database API -->
-            <!-- <SongItem v-for="song in songs" :key="song.id" :songname="song.fileName" :artistname="song.artist" :coverimageSrc="song.imageUrl"/> -->
+            <SongItem v-for="song in songs" :key="song.id" :songname="song.fileName" :artistname="song.artist" :coverimageSrc="song.imageUrl"/>
 
 
         </div>
@@ -41,7 +41,7 @@
 
 <script>
 
-// import axios from 'axios';
+import axios from 'axios';
 import SongItem from './SongItem';
 
 export default {
@@ -52,17 +52,33 @@ export default {
   data() {
     return {
         songs: [],
+        songURL: '',
     };
   },
-//   async created() {
-    // try {
-        // const response = await axios.get('http://127.:5000/api/songs');
-        // this.songs = response.data;
-        // console.log(this.songs);
-    // } catch (error) {
-        // console.error("Fetching Songs Failed", error);
-    // }
-//   },
+  methods: {
+    // Methods For Fetching Songs
+    async getSongList() {
+      try {
+        const response = await axios.get('http://localhost:5000/api/songs');
+        this.songs = response.data;
+      } catch (error) {
+        console.error("Error fetching song list", error);
+      }
+    },
+    async fetchSong(name) {
+      try {
+        console.log(name);
+        // const response = await axios.get(`http://localhost:5000/api/songs/name/${name}`);
+        this.songUrl = `http://localhost:5000/api/songs/name/Daylight.mp3`;
+      } catch (error) {
+        console.error("Error fetching song", error);
+      }
+    },
+  },
+  // Create Lifecycle Method
+  created() {
+    this.getSongList();
+  },
 }
 </script>
 

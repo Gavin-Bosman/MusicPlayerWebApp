@@ -25,10 +25,12 @@
 
 
 <script>
+
 export default {
   name: 'SongItem',
 
   props: {
+
     songname: {
         type: String,
         default: '- - -'
@@ -56,10 +58,11 @@ export default {
     togglePlay() {
       this.isPlaying = !this.isPlaying;
       this.playIcon = this.isPlaying ? this.pauseIcon : '../../assets/play_icon.svg';
-    }
-  }
+    },
+  },
 }
 </script>
+
 
 
 

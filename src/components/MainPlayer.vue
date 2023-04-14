@@ -3,7 +3,7 @@
 <template>
     <div class="main__window d-flex">
       <SideBar />
-      <testSongFetch/>
+      <!-- <testSongFetch/> -->
       <PlayerControls />
     </div>
 </template>
@@ -14,14 +14,14 @@
 
 import SideBar from './sidebar/SideBar';
 import PlayerControls from './player/PlayerControls';
-import testSongFetch from './testSongFetch.vue';
+// import testSongFetch from './testSongFetch.vue';
 
 export default {
   name: 'MainPlayer',
   components: {
     SideBar,
     PlayerControls,
-    testSongFetch
+    // testSongFetch
   }
 }
 </script>
