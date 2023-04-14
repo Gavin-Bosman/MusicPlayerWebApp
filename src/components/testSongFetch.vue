@@ -26,7 +26,7 @@ export default {
     },
     async fetchSong(name) {
       try {
-        console.log(name);
+        // console.log(name);
         // const response = await axios.get(`http://localhost:5000/api/songs/name/${name}`);
         this.songUrl = `http://localhost:5000/api/songs/name/Daylight.mp3`;
       } catch (error) {

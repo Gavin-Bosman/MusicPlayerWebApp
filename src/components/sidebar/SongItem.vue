@@ -56,8 +56,9 @@ export default {
 
   methods: {
     togglePlay() {
-      this.isPlaying = !this.isPlaying;
-      this.playIcon = this.isPlaying ? this.pauseIcon : '../../assets/play_icon.svg';
+        this.$emit('songPlayed', this.songname);
+        this.isPlaying = !this.isPlaying;
+        this.playIcon = this.isPlaying ? this.pauseIcon : '../../assets/play_icon.svg';
     },
   },
 }

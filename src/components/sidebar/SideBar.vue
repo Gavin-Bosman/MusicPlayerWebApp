@@ -28,7 +28,7 @@
             <SongItem songname="SUFFICE" artistname="NF" :coverimageSrc="require('@/assets/NF-HOPE.png')"/>
 
             <!-- Fetch List of Songs from Database API -->
-            <SongItem v-for="song in songs" :key="song.id" :songname="song.fileName" :artistname="song.artist" :coverimageSrc="song.albumCover"/>
+            <SongItem @songPlayed="handleSongPlayed" v-for="song in songs" :key="song.id" :songname="song.fileName" :artistname="song.artist" :coverimageSrc="song.albumCover"/>
 
 
         </div>
@@ -47,7 +47,10 @@ import SongItem from './SongItem';
 export default {
   name: 'SideBar',
   props: {
-    songs: []
+    songs: {
+        type: Array,
+        default: () => [],
+    }
   },
   components: {
     SongItem
@@ -58,6 +61,11 @@ export default {
         // songURL: '',
     };
  },
+ methods: {
+    handleSongPlayed(song) {
+        this.$emit('songPlayed', song);
+    }
+ }
 }
 </script>
 

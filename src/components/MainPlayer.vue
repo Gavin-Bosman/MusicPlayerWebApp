@@ -2,9 +2,10 @@
 
 <template>
     <div class="main__window d-flex">
-      <SideBar :songs="songs" />
-      <!-- <testSongFetch/> -->
-      <PlayerControls />
+      <SideBar @songPlayed="playSong" :songs="songs" />
+      <PlayerControls :songURL="playingURL" />
+      <!-- <audio controls :src="playingURL"  :volume="0.3" style="margin-top: 50px"></audio> -->
+      <!-- <testSongFetch></testSongFetch> -->
     </div>
 </template>
 
@@ -14,7 +15,7 @@
 
 import SideBar from './sidebar/SideBar';
 import PlayerControls from './player/PlayerControls';
-// import testSongFetch from './testSongFetch.vue';
+// import testSongFetch from './testSongFetch';
 import axios from 'axios';
 
 
@@ -28,7 +29,9 @@ export default {
   data() {
     return {
       songs: [],
+      songName: '',
       songURL: '',
+      playingURL: '',
     }
   },
   methods: {
@@ -44,13 +47,19 @@ export default {
     },
     async fetchSong(name) {
       try {
-        console.log(name);
+        console.log(name)
         const response = await axios.get(`http://localhost:5000/api/songs/name/${name}`);
-        this.songUrl = response.data.url;
+        this.songURL = response.data.url;
       } catch (error) {
         console.error("Error fetching song", error);
       }
     },
+    playSong(song) {
+      this.playingURL = `http://localhost:5000/api/songs/name/${song}`;
+      // this.fetchSong(song);
+      // console.log(this.songs[0].data);
+      // console.log(this.playingURL)
+    }
   },
   // Create Lifecycle Method
   created() {

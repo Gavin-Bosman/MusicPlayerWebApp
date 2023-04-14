@@ -56,7 +56,8 @@
                 
             </div>
             
-            <audio controls :src="songUrl" :volume="0.3" style="margin-top: 50px"></audio>
+            <audio controls :src="songURL" :volume="0.3" style="margin-top: 50px"></audio>
+
         </div>
     </div>
 
@@ -68,6 +69,19 @@
 <script>
 export default {
   name: 'PlayerControls',
+  props: {
+    songs: {
+        type: Array,
+    },
+    songName: {
+        type: String,
+        default: '',
+    },
+    songURL: {
+        type: String,
+        default: '',
+    }
+  },
   components: {
 
   }
