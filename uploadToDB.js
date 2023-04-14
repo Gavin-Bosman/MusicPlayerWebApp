@@ -13,6 +13,7 @@ const COLLECTION_NAME = 'songs';
 
 // Read file, make into object, store in DB
 async function storeSong(file_path, fileName) {
+  fileName = fileName.replace(/\.mp3$/, "");
   const binData = new Binary(fs.readFileSync(file_path));
 
   // Use dynamic import to load the music-metadata library

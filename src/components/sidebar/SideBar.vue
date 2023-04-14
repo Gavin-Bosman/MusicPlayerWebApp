@@ -41,45 +41,23 @@
 
 <script>
 
-import axios from 'axios';
+// import axios from 'axios';
 import SongItem from './SongItem';
 
 export default {
   name: 'SideBar',
+  props: {
+    songs: []
+  },
   components: {
     SongItem
   },
   data() {
     return {
-        songs: [],
-        songURL: '',
+        // songs: [],
+        // songURL: '',
     };
-  },
-  methods: {
-    // Methods For Fetching Songs
-    async getSongList() {
-      try {
-        const response = await axios.get('http://localhost:5000/api/songs');
-        this.songs = response.data;
-        
-      } catch (error) {
-        console.error("Error fetching song list", error);
-      }
-    },
-    async fetchSong(name) {
-      try {
-        console.log(name);
-        const response = await axios.get(`http://localhost:5000/api/songs/name/${name}`);
-        this.songUrl = response.data.url;
-      } catch (error) {
-        console.error("Error fetching song", error);
-      }
-    },
-  },
-  // Create Lifecycle Method
-  created() {
-    this.getSongList();
-  },
+ },
 }
 </script>
 

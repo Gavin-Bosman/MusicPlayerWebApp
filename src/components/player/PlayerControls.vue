@@ -53,11 +53,13 @@
                     </button>
 
                 </div>
-
+                
             </div>
-
+            
+            <audio controls :src="songUrl" :volume="0.3" style="margin-top: 50px"></audio>
         </div>
     </div>
+
 </template>
 
 

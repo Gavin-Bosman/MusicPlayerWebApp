@@ -1,6 +1,5 @@
 <template>
   <!-- Main Window/Component -->
-  <li v-for="song in songs" :key="song._id" @click="fetchSong(song.fileName)">{{ song.fileName }}</li>
   <audio controls :src="songUrl" :volume="0.3"></audio>
   
   <MainPlayer />

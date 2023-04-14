@@ -26,7 +26,7 @@ app.get('/api/songs', async (req, res) => {
 
     // Album covers are stored in binary form in the database
     // Need to convert them to base64 to be displayed in the sidebar
-    res.json(songs.map(({ _id, fileName, albumCover }) => ({ _id, fileName, albumCover: albumCover ? 'data:image/jpeg;base64,' + Buffer.from(albumCover.buffer).toString('base64') : null
+    res.json(songs.map(({ _id, fileName, artist, length, albumCover }) => ({ _id, fileName, artist, length, albumCover: albumCover ? 'data:image/jpeg;base64,' + Buffer.from(albumCover.buffer).toString('base64') : null
   })));
   } catch (err) {
     console.error(err);
