@@ -1,4 +1,4 @@
-<!-- THIS IS THE MAIN VIEW/WINDOW -->
+// <!-- THIS IS THE MAIN VIEW/WINDOW -->
 
 <template>
     <div class="main__window d-flex">
