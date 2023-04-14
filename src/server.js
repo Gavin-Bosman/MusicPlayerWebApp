@@ -23,12 +23,17 @@ app.get('/api/songs', async (req, res) => {
     await client.connect();
     const collection = client.db(DATABASE_NAME).collection(COLLECTION_NAME);
     const songs = await collection.find().toArray();
-    res.json(songs.map(({ _id, fileName }) => ({ _id, fileName })));
+
+    // Album covers are stored in binary form in the database
+    // Need to convert them to base64 to be displayed in the sidebar
+    res.json(songs.map(({ _id, fileName, albumCover }) => ({ _id, fileName, albumCover: albumCover ? 'data:image/jpeg;base64,' + Buffer.from(albumCover.buffer).toString('base64') : null
+  })));
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
   }
 });
+
 
 // Route to get a song by id
 app.get('/api/songs/id/:id', async (req, res) => {
@@ -79,6 +84,7 @@ app.get('/api/songs/name/:name', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

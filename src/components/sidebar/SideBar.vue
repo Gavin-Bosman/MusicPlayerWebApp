@@ -28,7 +28,7 @@
             <SongItem songname="SUFFICE" artistname="NF" :coverimageSrc="require('@/assets/NF-HOPE.png')"/>
 
             <!-- Fetch List of Songs from Database API -->
-            <SongItem v-for="song in songs" :key="song.id" :songname="song.fileName" :artistname="song.artist" :coverimageSrc="song.imageUrl"/>
+            <SongItem v-for="song in songs" :key="song.id" :songname="song.fileName" :artistname="song.artist" :coverimageSrc="song.albumCover"/>
 
 
         </div>
@@ -61,6 +61,7 @@ export default {
       try {
         const response = await axios.get('http://localhost:5000/api/songs');
         this.songs = response.data;
+        
       } catch (error) {
         console.error("Error fetching song list", error);
       }
@@ -68,8 +69,8 @@ export default {
     async fetchSong(name) {
       try {
         console.log(name);
-        // const response = await axios.get(`http://localhost:5000/api/songs/name/${name}`);
-        this.songUrl = `http://localhost:5000/api/songs/name/Daylight.mp3`;
+        const response = await axios.get(`http://localhost:5000/api/songs/name/${name}`);
+        this.songUrl = response.data.url;
       } catch (error) {
         console.error("Error fetching song", error);
       }
