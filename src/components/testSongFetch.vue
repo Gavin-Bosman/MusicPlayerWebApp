@@ -1,38 +1,42 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  
   <!-- Main Window/Component -->
+  <li v-for="song in songs" :key="song._id" @click="fetchSong(song.fileName)">{{ song.fileName }}</li>
   <audio controls :src="songUrl" :volume="0.3"></audio>
-  <li v-for="song in songs" :key="song._id" @click="fetchSong(song._id)">{{ song.fileName }}</li>
-  
   
   <MainPlayer />
-  
 </template>
 
 <script>
 import axios from 'axios';
 
 export default {
-    data() {
-        return {
-            songs: [],
-            songUrl: `http://localhost:5000/api/songs/name/TURN MY BACK.mp3`,
-        };
+  data() {
+    return {
+      songs: [],
+      songUrl: '',
+    };
   },
   methods: {
-    async fetchSong(name) {
-      name = "CAREFUL.mp3";
-  this.songUrl = `http://localhost:5000/api/songs/name/${name}`;
-  },
-  },
-  async created() {
+    async getSongList() {
       try {
-          const response = await axios.get('http://localhost:5000/api/songs');
-      this.songs = response.data;
-    } catch (err) {
-        console.error('Error fetching songs:', err);
-    }
+        const response = await axios.get('http://localhost:5000/api/songs');
+        this.songs = response.data;
+      } catch (error) {
+        console.error("Error fetching song list", error);
+      }
+    },
+    async fetchSong(name) {
+      try {
+        console.log(name);
+        // const response = await axios.get(`http://localhost:5000/api/songs/name/${name}`);
+        this.songUrl = `http://localhost:5000/api/songs/name/Daylight.mp3`;
+      } catch (error) {
+        console.error("Error fetching song", error);
+      }
+    },
+  },
+  created() {
+    this.getSongList();
   },
 };
 </script>

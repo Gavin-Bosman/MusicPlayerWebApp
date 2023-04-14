@@ -25,8 +25,10 @@
         <!-- Scrollable div -->
         <div class="songslist">
             <!-- <SongItem songname="Enemy" artistname="Imagine Dragons" coverimageSrc="https://assets.3dtotal.com/arcane-imagine-dragons.edcsyl.jpg"/> -->
-            <!-- <SongItem songname="SUFFICE" artistname="NF" coverimageSrc="../../assets/NF-HOPE.png"/> -->
-            <SongItem songname="SUFFICE" artistname="NF" :coverimageSrc="require('@/assets/NF-HOPE.png')"/>
+            <SongItem songname="SUFFICE" artistname="NF" coverimageSrc="../../assets/NF-HOPE.png"/>
+
+            <!-- Fetch List of Songs from Database API -->
+            <!-- <SongItem v-for="song in songs" :key="song.id" :songname="song.fileName" :artistname="song.artist" :coverimageSrc="song.imageUrl"/> -->
 
 
         </div>
@@ -39,13 +41,28 @@
 
 <script>
 
+// import axios from 'axios';
 import SongItem from './SongItem';
 
 export default {
   name: 'SideBar',
   components: {
     SongItem
-  }
+  },
+  data() {
+    return {
+        songs: [],
+    };
+  },
+//   async created() {
+    // try {
+        // const response = await axios.get('http://127.:5000/api/songs');
+        // this.songs = response.data;
+        // console.log(this.songs);
+    // } catch (error) {
+        // console.error("Fetching Songs Failed", error);
+    // }
+//   },
 }
 </script>
 
