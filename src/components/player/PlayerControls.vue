@@ -32,7 +32,9 @@
                     </div>
 
                     <!-- Total duration of the song that's playing -->
-                    <p class="player__contents_controls-progressbar--duration">4:20</p>
+                    <p class="player__contents_controls-progressbar--duration">{{ songLength ? formatLength(songLength) : '0:00' }}</p>
+
+
                 </div>
 
                 <!-- The control buttons -->
@@ -89,6 +91,10 @@ export default {
     songURL: {
         type: String,
         default: '',
+    },
+    songLength: {
+        type: [String, Number],
+        default: '',
     }
   },
   components: {
@@ -97,8 +103,16 @@ export default {
   computed: {
     getCoverArt() {
         return this.coverArt ? this.coverArt : require('@/assets/default_coverimage.png');
+    },
+    formatLength() {
+        return (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : `${remainingSeconds.toFixed(0)}`;
+        return `${minutes}:${formattedSeconds}`;
+        }
     }
-  }
+    }
 }
 </script>
 

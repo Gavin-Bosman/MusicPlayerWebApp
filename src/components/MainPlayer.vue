@@ -3,7 +3,7 @@
 <template>
     <div class="main__window d-flex">
       <SideBar @songPlayed="playSong" :songs="songs" />
-      <PlayerControls :songURL="playingURL" :songName="songName" :artistName="artistName" :coverArt="coverArt"/>
+      <PlayerControls :songURL="playingURL" :songName="songName" :artistName="artistName" :songLength="songLength" :coverArt="coverArt"/>
     </div>
 </template>
 
@@ -31,6 +31,7 @@ export default {
       songName: '',
       artistName: '',
       coverArt: '',
+      songLength: '',
       songURL: '',
       playingURL: '',
     }
@@ -54,6 +55,7 @@ export default {
         this.songID = response.data.id;
         this.songName = response.data.name;
         this.artistName = response.data.artist;
+        this.songLength = response.data.length;
         this.coverArt = response.data.albumCover;
         // console.log(this.songName, this.songURL, this.artistName, this.coverArt);
       } catch (error) {
