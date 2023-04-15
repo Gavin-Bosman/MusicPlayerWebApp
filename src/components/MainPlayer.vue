@@ -106,7 +106,7 @@ export default {
 
       opacity: 65%;
       background-size: cover;
-      filter: blur(56px);
+      filter: blur(106px);
     }
 
     .components {
