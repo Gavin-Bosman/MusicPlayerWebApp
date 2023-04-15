@@ -27,6 +27,7 @@ export default {
   data() {
     return {
       songs: [],
+      songID: '',
       songName: '',
       artistName: '',
       coverArt: '',
@@ -50,18 +51,23 @@ export default {
         console.log(name)
         const response = await axios.get(`http://localhost:5000/api/songs/fileName/${name}`);
         this.songURL = `http://localhost:5000/api/songs/fileName/${name}`
-        this.songName = name;
+        this.songID = response.data.id;
+        this.songName = response.data.name;
         this.artistName = response.data.artist;
         this.coverArt = response.data.albumCover;
-        console.log(this.songName, this.songURL, this.artistName, this.coverArt);
+        // console.log(this.songName, this.songURL, this.artistName, this.coverArt);
       } catch (error) {
         console.error("Error fetching song", error);
       }
     },
-    playSong(song) {
-      this.playingURL = `http://localhost:5000/api/songs/fileName/${song}`;
-      this.fetchSong(song);
-      console.log(this.song, this.songURL, this.artistName, this.coverArt);
+    async playSong(song) {
+      await this.fetchSong(song);
+      if (this.songID) {
+        this.playingURL = `http://localhost:5000/api/songs/id/${this.songID}`;
+        } else {
+          console.error("Error: songID is empty");
+        }
+      // console.log(this.song, this.songURL, this.artistName, this.coverArt);
       
     }
   },
