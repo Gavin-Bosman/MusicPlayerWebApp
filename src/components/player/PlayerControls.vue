@@ -59,7 +59,7 @@
                 
             </div>
             
-            <audio controls :src="songURL" :volume="0.3" style="margin-top: 50px"></audio>
+            <audio preload="none" class="audioPlayer" controls autoplay :src="songURL" :volume="0.3" style="margin-top: 50px;"></audio>
 
         </div>
     </div>
@@ -107,8 +107,8 @@ export default {
     formatLength() {
         return (seconds) => {
         const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : `${remainingSeconds.toFixed(0)}`;
+        const remainingSeconds = (seconds % 60).toFixed(0);
+        const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : `${remainingSeconds}`;
         return `${minutes}:${formattedSeconds}`;
         }
     }
@@ -123,6 +123,13 @@ export default {
 
     @import "../../sass/variables";
     @import "../../sass/utilityClasses";
+
+    .audioPlayer {
+        width: 100%; 
+        background: transparent !important;
+        border: none;
+    }
+    
 
     .player {
         //flex: 0 0 70%;

@@ -2,8 +2,9 @@
 
 <template>
     <div class="main__window d-flex">
-      <SideBar @songPlayed="playSong" :songs="songs" />
-      <PlayerControls :songURL="playingURL" :songName="songName" :artistName="artistName" :songLength="songLength" :coverArt="coverArt"/>
+      <SideBar class="components" @songPlayed="playSong" :songs="songs" />
+      <PlayerControls class="components" :songURL="playingURL" :songName="songName" :artistName="artistName" :songLength="songLength" :coverArt="coverArt"/>
+      <img class="backgroundImage" :src="`${this.coverArt}`" alt="">
     </div>
 </template>
 
@@ -89,9 +90,27 @@ export default {
     .main__window {
         min-width: 100vw;
         min-height: 100vh;
+        background-color: transparent;
         background-color: $color-primary;
         background: $color-dark;
-        background: linear-gradient(0deg, rgb(24, 24, 24) 0%, rgb(37, 61, 57) 88%, rgb(50, 96, 89) 100%, rgb(58, 119, 110) 100%, rgb(68, 148, 136) 100%, rgb(95, 227, 207) 100%, rgb(105, 255, 232) 100%);
+        /* background: linear-gradient(0deg, rgb(24, 24, 24) 0%, rgb(37, 61, 57) 88%, rgb(50, 96, 89) 100%, rgb(58, 119, 110) 100%, rgb(68, 148, 136) 100%, rgb(95, 227, 207) 100%, rgb(105, 255, 232) 100%); */
+    }
+    
+    .backgroundImage {
+      position: absolute;
+      z-index: 1;
+      transform: translate(15%, 0%);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      opacity: 65%;
+      background-size: cover;
+      filter: blur(56px);
+    }
+
+    .components {
+      z-index: 3
     }
 
 </style>
