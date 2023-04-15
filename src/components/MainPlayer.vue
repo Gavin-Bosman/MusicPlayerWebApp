@@ -3,9 +3,7 @@
 <template>
     <div class="main__window d-flex">
       <SideBar @songPlayed="playSong" :songs="songs" />
-      <PlayerControls :songURL="playingURL" />
-      <!-- <audio controls :src="playingURL"  :volume="0.3" style="margin-top: 50px"></audio> -->
-      <!-- <testSongFetch></testSongFetch> -->
+      <PlayerControls :songURL="playingURL" :songName="songName" :artistName="artistName" :coverArt="coverArt"/>
     </div>
 </template>
 
@@ -30,6 +28,8 @@ export default {
     return {
       songs: [],
       songName: '',
+      artistName: '',
+      coverArt: '',
       songURL: '',
       playingURL: '',
     }
@@ -48,17 +48,21 @@ export default {
     async fetchSong(name) {
       try {
         console.log(name)
-        const response = await axios.get(`http://localhost:5000/api/songs/name/${name}`);
-        this.songURL = response.data.url;
+        const response = await axios.get(`http://localhost:5000/api/songs/fileName/${name}`);
+        this.songURL = `http://localhost:5000/api/songs/fileName/${name}`
+        this.songName = name;
+        this.artistName = response.data.artist;
+        this.coverArt = response.data.albumCover;
+        console.log(this.songName, this.songURL, this.artistName, this.coverArt);
       } catch (error) {
         console.error("Error fetching song", error);
       }
     },
     playSong(song) {
       this.playingURL = `http://localhost:5000/api/songs/fileName/${song}`;
-      // this.fetchSong(song);
-      // console.log(this.songs[0].data);
-      // console.log(this.playingURL)
+      this.fetchSong(song);
+      console.log(this.song, this.songURL, this.artistName, this.coverArt);
+      
     }
   },
   // Create Lifecycle Method

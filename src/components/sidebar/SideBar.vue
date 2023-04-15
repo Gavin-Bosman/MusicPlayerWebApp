@@ -25,7 +25,7 @@
         <!-- Scrollable div -->
         <div class="songslist">
             <!-- <SongItem songname="Enemy" artistname="Imagine Dragons" coverimageSrc="https://assets.3dtotal.com/arcane-imagine-dragons.edcsyl.jpg"/> -->
-            <SongItem songname="SUFFICE" artistname="NF" :coverimageSrc="require('@/assets/NF-HOPE.png')"/>
+            <!-- <SongItem songname="SUFFICE" artistname="NF" :coverimageSrc="require('@/assets/NF-HOPE.png')"/> -->
 
             <!-- Fetch List of Songs from Database API -->
             <SongItem @songPlayed="handleSongPlayed" v-for="song in songs" :key="song.id" :songname="song.fileName" :artistname="song.artist" :coverimageSrc="song.albumCover"/>
