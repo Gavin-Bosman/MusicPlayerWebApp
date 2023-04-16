@@ -1,13 +1,10 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-
-  <!-- Main Window/Component -->
-  <MainPlayer />
-  
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
-import MainPlayer from './components/MainPlayer'
+import MainPlayer from './components/MainPlayer.vue'
 
 export default {
   name: 'App',
@@ -18,55 +15,12 @@ export default {
 </script>
 
 <style lang="scss">
-
-  @import "./sass/variables";
-
-  // Overall Body/App
-  *,
-  *::before,
-  *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-  }
-  html {
-    scroll-behavior: smooth !important;
-    box-sizing: border-box;
-    font-size: 62.5%;
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-  body {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 400; //Regular
-    line-height: 3;
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-
-  //Change highlight color
-  ::-moz-selection {
-    background-color: $color-primary;
-    color: $color-dark;
-  }
-  ::selection {
-    background-color: $color-primary;
-    color: $color-dark;
-  }
-
-
-  //Custom Scroll-bar
-  ::-webkit-scrollbar {
-    width: 1rem;
-    background-color: $color-dark;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: rgb(37, 37, 37);
-    border-radius: 1rem;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(61, 61, 61);
-  }
-
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>
