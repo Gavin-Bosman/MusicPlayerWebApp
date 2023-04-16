@@ -1,6 +1,9 @@
 <!-- Player Controls Component -->
 
 <template>
+    <div class="login_container">
+            <LoginButton />
+    </div>
     <div class="player">
         <div class="player__contents">
             <!-- Image -->
@@ -67,8 +70,12 @@
 
 
 <script>
+import LoginButton from './login/LoginButton.vue'
+//import LoginModal from './login/LoginModal.vue'
+
 export default {
   name: 'PlayerControls',
+  components: {LoginButton},
   props: {
     songs: {
         type: Array,
@@ -82,9 +89,6 @@ export default {
         default: '',
     }
   },
-  components: {
-
-  }
 }
 </script>
 
@@ -96,14 +100,22 @@ export default {
     @import "../../sass/variables";
     @import "../../sass/utilityClasses";
 
+    .login_container {
+        display: flex;
+        justify-content: right;
+        flex-direction: row;
+        flex-grow: 0.25;
+        position: relative;
+        padding: 20px;
+    }
+
     .player {
         //flex: 0 0 70%;
         flex-grow: 1;
-
         display: flex;
         align-items: center;
         justify-content: center;
-
+        flex-direction: column;
         
         &__contents {
 

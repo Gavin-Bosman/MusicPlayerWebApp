@@ -6,7 +6,7 @@ const { MongoClient, Binary } = require('mongodb');
 
 // const MONGODB_CONNECTION_STRING = 'mongodb://localhost:27017';
 // IPv4
-const MONGODB_CONNECTION_STRING = 'mongodb://127.0.0.1:27017';
+const MONGODB_CONNECTION_STRING = 'mongodb://localhost:27017';
 const DATABASE_NAME = 'songDB';
 const COLLECTION_NAME = 'songs';
 

@@ -3,7 +3,10 @@
 <template>
     <div class="main__window d-flex">
       <SideBar @songPlayed="playSong" :songs="songs" />
-      <PlayerControls :songURL="playingURL" />
+      <div class="controlsContainer">
+        <PlayerControls :songURL="playingURL" />
+      </div>
+      
       <!-- <audio controls :src="playingURL"  :volume="0.3" style="margin-top: 50px"></audio> -->
       <!-- <testSongFetch></testSongFetch> -->
     </div>
@@ -80,6 +83,12 @@ export default {
         background-color: $color-primary;
         background: $color-dark;
         background: linear-gradient(0deg, rgb(24, 24, 24) 0%, rgb(37, 61, 57) 88%, rgb(50, 96, 89) 100%, rgb(58, 119, 110) 100%, rgb(68, 148, 136) 100%, rgb(95, 227, 207) 100%, rgb(105, 255, 232) 100%);
+    }
+
+    .controlsContainer {
+      display: flex;
+      flex-direction: column;
+      width:100%;
     }
 
 </style>
