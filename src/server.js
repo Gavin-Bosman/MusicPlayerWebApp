@@ -11,6 +11,7 @@ const DATABASE_NAME = 'songDB';
 const COLLECTION_NAME = 'songs';
 
 // Middleware
+
 app.use(cors());
 app.use(express.json());
 
@@ -45,7 +46,7 @@ app.get('/api/songs/id/:id', async (req, res) => {
     });
     await client.connect();
     const collection = client.db(DATABASE_NAME).collection(COLLECTION_NAME);
-    const song = await collection.findOne({ _id: ObjectId(id) });
+    const song = await collection.findOne({ _id: new ObjectId(id) });
 
     if (!song) {
       res.status(404).send('Song could not be found');
@@ -61,8 +62,8 @@ app.get('/api/songs/id/:id', async (req, res) => {
 });
 
 // Route to get a song by name
-app.get('/api/songs/name/:name', async (req, res) => {
-  const name = req.params.fileName;
+app.get('/api/songs/fileName/:fileName', async (req, res) => {
+  const fileName = req.params.fileName;
 
   try {
     const client = new MongoClient(MONGODB_CONNECTION_STRING, {
@@ -70,15 +71,20 @@ app.get('/api/songs/name/:name', async (req, res) => {
     });
     await client.connect();
     const collection = client.db(DATABASE_NAME).collection(COLLECTION_NAME);
-    const song = await collection.findOne({ name: name });
+    const song = await collection.findOne({ fileName: fileName});
 
     if (!song) {
       res.status(404).send('Song could not be found');
       return;
     }
 
+    
     res.set('Content-Type', 'audio/mpeg');
-    res.send(song.data.buffer);
+    let songA = {id: song._id, data: song.data.buffer, name: song.fileName, artist: song.artist, length: song.length, albumCover: song.albumCover
+        ? 'data:image/jpeg;base64,' + Buffer.from(song.albumCover.buffer).toString('base64')
+        : null};
+    // res.send(song.data.buffer);
+    res.send(songA);
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');

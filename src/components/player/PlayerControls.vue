@@ -9,13 +9,14 @@
             <!-- Image -->
             <div class="player__contents_coverphotobox">
                 <!-- <img class="player__contents_coverphotobox-photo" src="../../assets/imaginedragons_enemy_photo.jpg" alt="Album Image"> -->
-                <img class="player__contents_coverphotobox-photo" src="../../assets/NF-HOPE.png" alt="Album Image">
+                <!-- <img class="player__contents_coverphotobox-photo" src="../../assets/NF-HOPE.png" alt="Album Image"> -->
+                <img class="player__contents_coverphotobox-photo" :src="getCoverArt" alt="Album Image">
             </div>
 
             <!-- Song and Artist Name -->
             <div class="player__contents_details">
-                <h3 class="player__contents_details-songname">SUFFICE</h3>
-                <h4 class="player__contents_details-artistname">NF</h4>
+                <h3 class="player__contents_details-songname">{{ songName }}</h3>
+                <h4 class="player__contents_details-artistname">{{ artistName }}</h4>
             </div>
 
             <!-- Progress Bar and Controls -->
@@ -34,7 +35,9 @@
                     </div>
 
                     <!-- Total duration of the song that's playing -->
-                    <p class="player__contents_controls-progressbar--duration">4:20</p>
+                    <p class="player__contents_controls-progressbar--duration">{{ songLength ? formatLength(songLength) : '0:00' }}</p>
+
+
                 </div>
 
                 <!-- The control buttons -->
@@ -59,7 +62,7 @@
                 
             </div>
             
-            <audio controls :src="songURL" :volume="0.3" style="margin-top: 50px"></audio>
+            <audio preload="none" class="audioPlayer" controls autoplay :src="songURL" :volume="0.3" style="margin-top: 50px;"></audio>
 
         </div>
     </div>
@@ -84,11 +87,39 @@ export default {
         type: String,
         default: '',
     },
+    artistName: {
+        type: String,
+        default: '',
+    },
+    coverArt: {
+        type: String,
+        default: '',
+    },
     songURL: {
         type: String,
         default: '',
+    },
+    songLength: {
+        type: [String, Number],
+        default: '',
     }
   },
+  components: {
+
+  },
+  computed: {
+    getCoverArt() {
+        return this.coverArt ? this.coverArt : require('@/assets/default_coverimage.png');
+    },
+    formatLength() {
+        return (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = (seconds % 60).toFixed(0);
+        const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : `${remainingSeconds}`;
+        return `${minutes}:${formattedSeconds}`;
+        }
+    }
+    }
 }
 </script>
 
@@ -107,6 +138,11 @@ export default {
         flex-grow: 0.25;
         position: relative;
         padding: 20px;
+    }
+    .audioPlayer {
+        width: 100%; 
+        background: transparent !important;
+        border: none;
     }
 
     .player {
