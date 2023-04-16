@@ -18,7 +18,7 @@
                             <h1 id="emailLabel">Email:</h1>
                         </div>
                         <div class="field-body">
-                            <input id="emailInput" class="input" type="text" />
+                            <input id="emailInput" class="input" type="text" ref="email" />
                         </div>
                     </div>
                     <div class="field">
@@ -26,7 +26,7 @@
                             <h1 id="unameLabel">Username:</h1>
                         </div>
                         <div class="field-body">
-                            <input id="unameInput" class="input" type="text" />
+                            <input id="unameInput" class="input" type="text" ref="username" />
                         </div>
                     </div>
                     <div class="field">
@@ -34,11 +34,11 @@
                             <h1 id="passwordLabel">Password:</h1>
                         </div>
                         <div class="field-body">
-                            <input id="passwordInput" class="input" type="text" />
+                            <input id="passwordInput" class="input" type="text" ref="password" />
                         </div>
                     </div>
                     <div class="submit-container">
-                        <button id="submitButton" class="button">{{modalType}}</button>
+                        <button @click=submitForm() id="submitButton" class="button">{{modalType}}</button>
                     </div>
                 </div>
             </div>
@@ -66,6 +66,9 @@
             },
             close() {
                 this.$refs.modal.style = "display: none;"
+            },
+            submitForm() {
+
             }
         },
     }
