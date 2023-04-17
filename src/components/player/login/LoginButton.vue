@@ -123,28 +123,29 @@
                 return response;
             },
             async signUp() {
+                this.newUnameErr = false;
+                this.newEmailErr = false;
+                this.newPassErr = false;
+
                 let exit = false;
                 let email = this.$refs.email.value;
                 let uname = this.$refs.username.value;
                 let pass = this.$refs.password.value;
 
-                if (await this.validateUserName(uname) !== null) {
-                    this.unameErr = true;
+                let account = await this.validateUserName(uname);
+
+                if (account !== null) {
+                    this.newUnameErr = true;
                     exit = true;
                 }
-            
                 if (!this.validateEmail(email)) {
-                    this.emailErr = true;
+                    this.newEmailErr = true;
                     exit = true;
-                } else {
-                    this.emailErr = false;
-                }
+                } 
                 if (!this.validatePassword(pass)) {
-                    this.passErr = true;
+                    this.newPassErr = true;
                     exit = true;
-                } else {
-                    this.passErr = false;
-                }
+                } 
 
                 if (exit) {
                     return;
