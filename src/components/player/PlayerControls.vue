@@ -1,6 +1,10 @@
 <!-- Player Controls Component -->
 
 <template>
+    <div class="login_container" >
+            <LoginButton v-if="loggedIn == false" @LogIn="displayAccount" />
+            <AccountMenu v-if="loggedIn == true" />
+    </div>
     <div class="player">
         <div class="player__contents">
             <!-- Image -->
@@ -70,8 +74,17 @@
 
 
 <script>
+import LoginButton from './login/LoginButton.vue'
+import AccountMenu from './login/AccountMenu.vue'
+
 export default {
   name: 'PlayerControls',
+  components: {LoginButton, AccountMenu},
+  data() {
+    return {
+        loggedIn: false,
+    }
+  },
   props: {
     songs: {
         type: Array,
@@ -97,8 +110,11 @@ export default {
         default: '',
     }
   },
-  components: {
-
+  methods: {
+    displayAccount(user) {
+        console.log(user);
+        this.loggedIn = true;
+    }
   },
   computed: {
     getCoverArt() {
@@ -124,21 +140,27 @@ export default {
     @import "../../sass/variables";
     @import "../../sass/utilityClasses";
 
+    .login_container {
+        display: flex;
+        justify-content: right;
+        flex-direction: row;
+        flex-grow: 0.25;
+        position: relative;
+        padding: 45px;
+    }
     .audioPlayer {
         width: 100%; 
         background: transparent !important;
         border: none;
     }
-    
 
     .player {
         //flex: 0 0 70%;
         flex-grow: 1;
-
         display: flex;
         align-items: center;
         justify-content: center;
-
+        flex-direction: column;
         
         &__contents {
 

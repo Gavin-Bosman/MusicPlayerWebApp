@@ -15,6 +15,44 @@ const COLLECTION_NAME = 'songs';
 app.use(cors());
 app.use(express.json());
 
+// route to post user data
+app.post('/api/users', async (req, res) => {
+  try {
+    const client = new MongoClient(MONGODB_CONNECTION_STRING, {
+      useUnifiedTopology: true,
+    });
+    await client.connect();
+    const collection = client.db('userDB').collection('users');
+    let data = req.body;
+
+    collection.insertOne(data);
+    res.send("1 User Inserted!");
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/api/users/userName/:username', async (req, res) => {
+  const username = req.params.username;
+  console.log(username);
+
+  try {
+    const client = new MongoClient(MONGODB_CONNECTION_STRING, {
+      useUnifiedTopology: true,
+    });
+    await client.connect();
+    const collection = client.db('userDB').collection('users');
+    const user = await collection.findOne({username: username});
+    res.json(user);
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 // Route to get all songs
 app.get('/api/songs', async (req, res) => {
   try {

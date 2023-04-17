@@ -1,0 +1,63 @@
+VUE:
+    - inserting dynamic variables in the vue app template
+        - include {{var_name}} within the DOM element you wish to insert within
+        - i.e. <p> {{Name}} </p>
+        - within your component's script include the data() function and output an object containing
+        values for the Name variable
+
+    - Click events
+        - use vue directive v-on:click="" (can have v-on: any event)
+        - shorthand for v-on is @ (i.e. @click="num++")
+            - can directly insert JS functionality into the quotes, or refer to a function
+            - i.e. v-on:click="myFunc()"
+        - include your app methods in a methods {} object within your component's script
+    
+    - Other useful events
+        - @mouseover
+        - @mouseleave
+        - @dblclick
+
+    - Conditional Rendering
+        - use vue directive v-if="some_var" to conditionally toggle display
+        - can also use similar v-show="some_var"
+            - v-if removes or inserts the element based on some condition
+            - v-show toggles css visibility property, so elements still remain in the DOM
+        - v-if is more computationally expensive
+    
+    - looping
+        - v-for directive allows you to cycle through a list in your component and display items to the DOM
+        - v-for="item in <list>"
+
+    - dynamic attribute binding
+        - v-bind:attr="var_name"
+        - i.e. v-bind:name="appName"
+            - shorthand is : (i.e. :name="appName")
+    
+    - computed properties
+        - data property within your component that depends on other defined properties
+        - encapsulate in the computed: {} object within your component
+
+VUE CLI:
+    - Each vue component is represented with a component.vue file
+    - each component file contains three main sections
+        template: html template for the component
+        script: where we export the component object
+        style: component specific css styling
+    - script contains export default {} object which may contain data, methods, computed, etc.
+
+    template refs:
+        - accessing dom elements by storing them in a vue variable
+        - within your dom element include the ref attr (ref="value")
+        - once you have assigned refs to your elements, you access them within your component with:
+            - var = this.$refs.ref_name
+            - can apply/access any vanilla JS dom manipulation methods to this variable
+
+    Using multiple components:
+        - every component will be nested within the root component, App.vue
+        
+
+MONGODB:
+    - stores collections of documents
+        - collections are essentially tables storing one type of document
+        - documents represent a single date item, stored in a similar format to json
+    
