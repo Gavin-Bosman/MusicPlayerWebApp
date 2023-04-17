@@ -56,6 +56,8 @@ VUE CLI:
         - every component will be nested within the root component, App.vue
         
 
-SASS:
-
 MONGODB:
+    - stores collections of documents
+        - collections are essentially tables storing one type of document
+        - documents represent a single date item, stored in a similar format to json
+    

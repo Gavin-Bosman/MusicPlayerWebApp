@@ -20,6 +20,9 @@
                         <div class="field-body">
                             <input id="emailInput" class="input" type="text" ref="email" />
                         </div>
+                        <div class="field-label" v-if="newEmailErr">
+                            <h2 class="errorMessage">Please Enter a Valid Email Address</h2>
+                        </div>
                     </div>
                     <div class="field">
                         <div class="field-label">
@@ -27,6 +30,12 @@
                         </div>
                         <div class="field-body">
                             <input id="unameInput" class="input" type="text" ref="username" />
+                        </div>
+                        <div class="field-label" v-if="newUnameErr">
+                            <h2 class="errorMessage">Sorry, That Username Is Taken</h2>
+                        </div>
+                        <div class="field-label" v-if="loginUserErr">
+                            <h2 class="errorMessage">Invalid Username</h2>
                         </div>
                     </div>
                     <div class="field">
@@ -36,9 +45,22 @@
                         <div class="field-body">
                             <input id="passwordInput" class="input" type="text" ref="password" />
                         </div>
+                        <div class="field-label" v-if="newPassErr">
+                            <h2 class="errorMessage">Please Enter a Password that is:</h2>
+                            <ul id="passErrList">
+                                <li>8-15 Characters Long</li>
+                                <li>Contains at least 1 Capital Letter</li>
+                                <li>Contains at least 1 Special Character</li>
+                                <li>Contains at least 1 Number</li>
+                            </ul>
+                        </div>
+                        <div class="field-label" v-if="loginPassErr">
+                            <h2 class="errorMessage">Username And Password Do Not Match</h2>
+                        </div>
                     </div>
                     <div class="submit-container">
-                        <button @click=submitForm() id="submitButton" class="button">{{modalType}}</button>
+                        <button v-if="modalType == 'Sign Up'" @click=signUp() id="submitButton" class="button">{{modalType}}</button>
+                        <button v-else @click=logIn() id="submitButton" class="button">{{modalType}}</button>
                     </div>
                 </div>
             </div>
@@ -47,16 +69,22 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         name: 'LoginButton',
         data() {
             return {
-                modalType: ""
+                modalType: "",
+                newEmailErr: false,
+                newUnameErr: false,
+                newPassErr: false,
+                loginPassErr: false,
+                loginUserErr: false,
             }
         },
         methods: {
             clicked(e) {
-                console.log(e.target.id);
                 if(e.target.id === "signupButton") {
                     this.modalType = "Sign Up"
                 } else {
@@ -67,8 +95,100 @@
             close() {
                 this.$refs.modal.style = "display: none;"
             },
-            submitForm() {
+            validateEmail(email) {
+                let pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i; // eslint-disable-line
+                if (pattern.test(email)) {
+                    return true;
+                }
+                return false;
+            },
+            validatePassword(password) {
+                let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/ // eslint-disable-line
+                if (pattern.test(password)) {
+                    return true;
+                }
+                return false;
+            },
+            async validateUserName(username) {
+                let response = null;
+                await axios.get(`http://localhost:5000/api/users/userName/${username}`)
+                    .then((res) => {
+                        //console.log(res.data);
+                        response = res.data;
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                    });
 
+                return response;
+            },
+            async signUp() {
+                let exit = false;
+                let email = this.$refs.email.value;
+                let uname = this.$refs.username.value;
+                let pass = this.$refs.password.value;
+
+                if (await this.validateUserName(uname) !== null) {
+                    this.unameErr = true;
+                    exit = true;
+                }
+            
+                if (!this.validateEmail(email)) {
+                    this.emailErr = true;
+                    exit = true;
+                } else {
+                    this.emailErr = false;
+                }
+                if (!this.validatePassword(pass)) {
+                    this.passErr = true;
+                    exit = true;
+                } else {
+                    this.passErr = false;
+                }
+
+                if (exit) {
+                    return;
+                }
+
+                let userAccount = {"email":email, "username":uname, "password":pass}
+
+                await axios.post('http://localhost:5000/api/users', userAccount)
+                    .then((res) => {
+                        console.log(res.data);
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                    });
+                
+                this.$refs.email.value = "";
+                this.$refs.username.value = "";
+                this.$refs.password.value = "";
+                this.close();
+            }, 
+            async logIn() {
+                this.loginUserErr = false;
+                this.loginPassErr = false;
+                let uname = this.$refs.username.value;
+                let pass = this.$refs.password.value;
+                let account = await this.validateUserName(uname);
+
+                if (account === null) {
+                    this.loginUserErr = true;
+                    return;
+                }
+
+                if (account.password != pass) {
+                    this.loginPassErr = true;
+                    return;
+                    
+                } else {
+                    this.$emit('LogIn', account.username);
+                    console.log(`Logged in: ${account.username}`);
+                }
+
+                this.$refs.username.value = "";
+                this.$refs.password.value = "";
+                this.close();
             }
         },
     }
@@ -152,7 +272,7 @@
         margin: 10% auto; /* 15% from the top and centered */
         //padding: 20px;
         border-radius: 15px;
-        width: 40%; /* Could be more or less, depending on screen size */
+        width: 50%; /* Could be more or less, depending on screen size */
     }
 
     .closeContainer {
@@ -202,6 +322,7 @@
 
     .field-label {
         display:flex;
+        flex-direction: column;
         justify-content: center;
     }
 
@@ -213,6 +334,8 @@
     #emailInput, #unameInput, #passwordInput {
         width:70%;
         font-size: large;
+        border-radius: 10px;
+        padding-left: 5px;
     }
 
     .submit-container {
@@ -244,5 +367,14 @@
         }
     }
 
+    .errorMessage {
+        width:70%;
+        text-align: left;
+    }
+
+    #passErrList {
+        text-align: left;
+        font-size: medium;
+    }
 
 </style>

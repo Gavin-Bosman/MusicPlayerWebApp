@@ -3,7 +3,9 @@
 <template>
     <div class="main__window d-flex">
       <SideBar class="components" @songPlayed="playSong" :songs="songs" />
-      <PlayerControls class="components" :songURL="playingURL" :songName="songName" :artistName="artistName" :songLength="songLength" :coverArt="coverArt"/>
+      <div class="controlsContainer">
+        <PlayerControls :songURL="playingURL" :songName="songName" :artistName="artistName" :songLength="songLength" :coverArt="coverArt"/>
+      </div>
       <img class="backgroundImage" :src="`${this.coverArt}`" alt="">
     </div>
 </template>
@@ -110,13 +112,14 @@ export default {
     }
 
     .components {
-      z-index: 3
+      z-index: 3;
     }
 
     .controlsContainer {
       display: flex;
       flex-direction: column;
       width:100%;
+      z-index: 3;
     }
 
 </style>

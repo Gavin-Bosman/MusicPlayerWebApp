@@ -1,8 +1,9 @@
 <!-- Player Controls Component -->
 
 <template>
-    <div class="login_container">
-            <LoginButton />
+    <div class="login_container" >
+            <LoginButton v-if="loggedIn == false" @LogIn="displayAccount" />
+            <AccountMenu v-if="loggedIn == true" />
     </div>
     <div class="player">
         <div class="player__contents">
@@ -74,11 +75,16 @@
 
 <script>
 import LoginButton from './login/LoginButton.vue'
-//import LoginModal from './login/LoginModal.vue'
+import AccountMenu from './login/AccountMenu.vue'
 
 export default {
   name: 'PlayerControls',
-  components: {LoginButton},
+  components: {LoginButton, AccountMenu},
+  data() {
+    return {
+        loggedIn: false,
+    }
+  },
   props: {
     songs: {
         type: Array,
@@ -104,8 +110,11 @@ export default {
         default: '',
     }
   },
-  components: {
-
+  methods: {
+    displayAccount(user) {
+        console.log(user);
+        this.loggedIn = true;
+    }
   },
   computed: {
     getCoverArt() {
@@ -137,7 +146,7 @@ export default {
         flex-direction: row;
         flex-grow: 0.25;
         position: relative;
-        padding: 20px;
+        padding: 45px;
     }
     .audioPlayer {
         width: 100%; 
