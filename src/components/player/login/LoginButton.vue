@@ -9,7 +9,7 @@
                     <h1 class="modal-title" v-if="modalType == 'Sign Up'">Nice To Meet You!</h1>
                     <h1 class="modal-title" v-else>Welcome Back!</h1>
                     <div class="closeContainer">
-                        <button class="close" @click=close>&times;</button>
+                        <button class="close" @click=close(modalType)>&times;</button>
                     </div>
                 </div>
                 <div class="modal-body">
@@ -32,10 +32,10 @@
                             <input id="unameInput" class="input" type="text" ref="username" />
                         </div>
                         <div class="field-label" v-if="newUnameErr">
-                            <h2 class="errorMessage">Sorry, That Username Is Taken</h2>
+                            <h2 class="errorMessage">{{unameErrMsg}}</h2>
                         </div>
                         <div class="field-label" v-if="loginUserErr">
-                            <h2 class="errorMessage">Invalid Username</h2>
+                            <h2 class="errorMessage">{{unameErrMsg}}</h2>
                         </div>
                     </div>
                     <div class="field">
@@ -46,12 +46,12 @@
                             <input id="passwordInput" class="input" type="text" ref="password" />
                         </div>
                         <div class="field-label" v-if="newPassErr">
-                            <h2 class="errorMessage">Please Enter a Password that is:</h2>
+                            <h2 class="errorMessage">Please Enter a Password That Is:</h2>
                             <ul id="passErrList">
                                 <li>8-15 Characters Long</li>
-                                <li>Contains at least 1 Capital Letter</li>
-                                <li>Contains at least 1 Special Character</li>
-                                <li>Contains at least 1 Number</li>
+                                <li>Contains At Least 1 Capital Letter</li>
+                                <li>Contains At Least 1 Special Character</li>
+                                <li>Contains At Least 1 Number</li>
                             </ul>
                         </div>
                         <div class="field-label" v-if="loginPassErr">
@@ -81,6 +81,7 @@
                 newPassErr: false,
                 loginPassErr: false,
                 loginUserErr: false,
+                unameErrMsg: ""
             }
         },
         methods: {
@@ -92,8 +93,22 @@
                 }
                 this.$refs.modal.style = "display: block;"
             },
-            close() {
+            close(modalType) {
                 this.$refs.modal.style = "display: none;"
+
+                if (modalType == "Sign Up") {
+                    this.$refs.email.value = "";
+                    this.$refs.username.value = "";
+                    this.$refs.password.value = "";
+                    this.newEmailErr = false;
+                    this.newUnameErr = false; 
+                    this.newPassErr = false;
+                } else if (modalType == "Log In") {
+                    this.$refs.username.value = "";
+                    this.$refs.password.value = "";
+                    this.loginUserErr = false;
+                    this.loginPassErr = false;
+                }
             },
             validateEmail(email) {
                 let pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i; // eslint-disable-line
@@ -103,13 +118,23 @@
                 return false;
             },
             validatePassword(password) {
-                let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/ // eslint-disable-line
+                let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/; // eslint-disable-line
                 if (pattern.test(password)) {
                     return true;
                 }
                 return false;
             },
             async validateUserName(username) {
+                let pattern = /[a-zA-Z]/ // eslint-disable-line
+
+                if (username.length < 3) {
+                    this.unameErrMsg = "Please Input a Username With At Least Three Characters";
+                    return true;
+                } else if (!pattern.test(username)) {
+                    this.unameErrMsg = "Please Input a Username With At Least One Letter";
+                    return true;
+                }
+
                 let response = null;
                 await axios.get(`http://localhost:5000/api/users/userName/${username}`)
                     .then((res) => {
@@ -119,6 +144,12 @@
                     .catch((err) => {
                         console.error(err);
                     });
+                
+                if (response != null && this.modalType == "Sign Up") {
+                    this.unameErrMsg = "Sorry, That Username Is Already Taken";
+                } else if (response != null && this.modalType == "Log In") {
+                    this.unameErrMsg = "Invalid Username";
+                }
 
                 return response;
             },
@@ -161,10 +192,8 @@
                         console.error(err);
                     });
                 
-                this.$refs.email.value = "";
-                this.$refs.username.value = "";
-                this.$refs.password.value = "";
-                this.close();
+                this.$emit('LogIn', uname);
+                this.close(this.modalType);
             }, 
             async logIn() {
                 this.loginUserErr = false;
@@ -187,9 +216,7 @@
                     console.log(`Logged in: ${account.username}`);
                 }
 
-                this.$refs.username.value = "";
-                this.$refs.password.value = "";
-                this.close();
+                this.close(this.modalType);
             }
         },
     }
