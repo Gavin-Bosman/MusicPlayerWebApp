@@ -1,6 +1,6 @@
 <template>
     <button @click=clicked($event) id="signupButton" class="button" ref="signup">Sign Up</button>
-    <button @click=clicked($event) id="loginButton" class="button" ref="login">Login</button>
+    <button @click=clicked($event) id="loginButton" class="button" ref="login">Login&nbsp;&nbsp;</button>
 
     <teleport to="body">
         <div id="loginModal" class="modal" ref="modal"> 
@@ -200,60 +200,75 @@
     @import "../../../sass/utilityClasses";
 
     #signupButton {
-        width: 80px;
-        height: 40px;
-        position: relative;
+
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 400; //Regular
+
+        width: 12rem;
+        height: 5rem;
         z-index: 2;
 
-        font-size: 150%;
-        background-color: $color-primary;
-        padding: 5px 10px 5px 10px;
+        font-size: 1.6rem;
+        letter-spacing: 0.5px;
+        background-color: $color-white;
+        color: $color-grey-darker;
+        padding: 5px 10px;
         text-align: center;
 
-        border-top-left-radius: 25px;
-        border-bottom-left-radius: 25px;
-        border-top-right-radius: 25px;
-        border-bottom-right-radius: 25px;
+        border-radius: 25px;
 
         border: none;
         cursor: pointer;
 
+        transition: all .3s ease-out;
+
         &:hover {
-            border: 2px solid $color-white;
+            background-color: $color-grey-dark;
+            color: rgb(205, 205, 205);
+        }
+        &:active {
+            background-color: $color-dark;
         }
         
     }
     #loginButton {
-        width: 120px;
-        height: 40px;
-        position: relative;
+
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 400; //Regular
+
+        width: 14.5rem;
+        height: 5rem;
         z-index: 1;
 
-        font-size: 150%;
-        text-align:right;
+        font-size: 1.6rem;
+        letter-spacing: 0.5px;
+        text-align: right;
 
-        background-color: $color-primary-lighter;
-        padding: 5px 15px 5px 10px;
+        background-color: $color-grey-darker;
+        color: $color-white;
+        padding: 5px 15px;
         margin-left: -60px;
 
-        border-top-left-radius: 25px;
-        border-bottom-left-radius: 25px;
-        border-top-right-radius: 25px;
-        border-bottom-right-radius: 25px;
+        border-radius: 25px;
 
         border: none;
         cursor: pointer;
 
+        transition: all .3s ease-out;
+
         &:hover {
-            background-color: $color-primary-darker;
-            border: 2px solid $color-white;
+            background-color: $color-grey-dark;
+            color: $color-grey-lighter;
         }
     }
 
     .modal {
+        font-family: 'Ubuntu', sans-serif !important;
+        font-weight: 400 !important;
+
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
-        z-index: 3; /* Sit on top */
+        z-index: 4; /* Sit on top */
         left: 0;
         top: 0;
         width: 100%; /* Full width */
@@ -264,15 +279,17 @@
     }
 
     .modal-content {
+
         display: flex;
         justify-content: center;
         align-content: center;
         flex-direction: column;
 
-        background-color: #fefefe;
+        background-color: $color-dark;
+        box-shadow: 0 0 30px 0px black;
         margin: 10% auto; /* 15% from the top and centered */
         //padding: 20px;
-        border-radius: 15px;
+        border-radius: 10px;
         width: 50%; /* Could be more or less, depending on screen size */
     }
 
@@ -297,23 +314,28 @@
     }
 
     .modal-body {
+        padding: 4rem 0;
         text-align: center;
         display: flex;
         flex-direction: column;
+        // overflow-x: hidden;
+        // overflow-y: scroll;
     }
 
     .modal-header {
-        width:100%;
-        display:flex;
+        width: 100%;
+        display: flex;
         justify-content: center;
-        padding: 15px;
+        padding: 10px 10%;
         background-color: $color-primary;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
 
     .modal-title {
         flex-grow: 1;
+        font-family: 'Ubuntu', sans-serif !important;
+        font-weight: 500 !important;
     }
 
     .field {
@@ -328,15 +350,45 @@
     }
 
     #emailLabel, #unameLabel, #passwordLabel {
+        font-family: 'Ubuntu', sans-serif !important;
+        font-size: 1.6rem;
+        font-weight: 300 !important;
+        line-height: normal;
+        color: rgb(214, 214, 214);
+
         width:70%;
         text-align: left;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
     }
 
     #emailInput, #unameInput, #passwordInput {
-        width:70%;
-        font-size: large;
-        border-radius: 10px;
-        padding-left: 5px;
+        font-family: 'Ubuntu', sans-serif !important;
+        font-weight: 400 !important;
+
+        width: 100%;
+        height: 4rem;
+        text-align: left;
+        font-size: 1.6rem;
+        border-radius: 5px;
+        padding-left: 15px;
+        background-color: $color-grey-dark;
+        border: none;
+        color: rgb(219, 219, 219);
+        transition: all .3s ease-out;
+
+        &:hover {
+            background-color: rgb(44, 44, 44);
+        }
+        &:focus {
+            background-color: white;
+            outline: none;
+            color: $color-dark;
+        }
+        
+        &::placeholder {
+            color: rgb(117, 117, 117);
+        }
     }
 
     .submit-container {
@@ -349,31 +401,43 @@
     }
 
     #submitButton {
-        width: 25%;
-        height: 40px;
-        font-size: 175%;
-        font-weight: bold;
-
-        border-top-left-radius: 25px;
-        border-bottom-left-radius: 25px;
-        border-top-right-radius: 25px;
-        border-bottom-right-radius: 25px;
-
-        background-color: $color-primary;
+        font-family: "Ubuntu", sans-serif !important;
+        font-weight: 400 !important;
+        width: 21rem;
+        height: 5rem;
+        font-size: 1.8rem;
+        font-weight: 500;
+        border-radius: 5px;
+        background-color: #69FFE8;
         border: none;
         cursor: pointer;
+        margin-top: 2rem;
+        transition: all .3s ease-out;
 
         &:hover {
-            border: 2px solid black;
+            background-color: $color-primary-lighter;
+        }
+        &:active {
+            background-color: $color-primary-darker;
         }
     }
 
     .errorMessage {
-        width:70%;
+        font-family: 'Ubuntu', sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 1.6rem;
+
+        color: rgb(255, 67, 67);
         text-align: left;
     }
 
     #passErrList {
+        font-family: 'Ubuntu', sans-serif !important;
+        font-weight: 400 !important;
+        text-decoration: none;
+        font-size: 1.6rem !important;
+
+        color: rgb(255, 67, 67);
         text-align: left;
         font-size: medium;
     }

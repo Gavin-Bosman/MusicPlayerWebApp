@@ -6,7 +6,7 @@
       <div class="controlsContainer">
         <PlayerControls :songURL="playingURL" :songName="songName" :artistName="artistName" :songLength="songLength" :coverArt="coverArt"/>
       </div>
-      <img class="backgroundImage" :src="`${this.coverArt}`" alt="">
+      <img class="backgroundImage" :src="`${this.coverArt}`" alt="BlurredCoverImage">
     </div>
 </template>
 
@@ -95,7 +95,7 @@ export default {
         background-color: transparent;
         background-color: $color-primary;
         background: $color-dark;
-        /* background: linear-gradient(0deg, rgb(24, 24, 24) 0%, rgb(37, 61, 57) 88%, rgb(50, 96, 89) 100%, rgb(58, 119, 110) 100%, rgb(68, 148, 136) 100%, rgb(95, 227, 207) 100%, rgb(105, 255, 232) 100%); */
+        // background: linear-gradient(0deg, rgb(24, 24, 24) 0%, rgb(37, 61, 57) 88%, rgb(50, 96, 89) 100%, rgb(58, 119, 110) 100%, rgb(68, 148, 136) 100%, rgb(95, 227, 207) 100%, rgb(105, 255, 232) 100%);
     }
     
     .backgroundImage {

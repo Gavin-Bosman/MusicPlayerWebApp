@@ -88,6 +88,9 @@ export default {
         background-color: $color-dark;
         padding: 3.5rem 5rem;
 
+        position: relative;
+        z-index: 4 !important;
+
 
         &__button {
             font-family: sans-serif !important;
