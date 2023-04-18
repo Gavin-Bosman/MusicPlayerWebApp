@@ -88,6 +88,7 @@ export default {
 <style lang="scss">
 
     @import "../sass/variables";
+    @import "../sass/animations";
 
     .main__window {
         min-width: 100vw;
@@ -95,20 +96,24 @@ export default {
         background-color: transparent;
         background-color: $color-primary;
         background: $color-dark;
-        // background: linear-gradient(0deg, rgb(24, 24, 24) 0%, rgb(37, 61, 57) 88%, rgb(50, 96, 89) 100%, rgb(58, 119, 110) 100%, rgb(68, 148, 136) 100%, rgb(95, 227, 207) 100%, rgb(105, 255, 232) 100%);
+        background: linear-gradient(0deg, rgb(24, 24, 24) 0%, rgb(37, 61, 57) 88%, rgb(50, 96, 89) 100%, rgb(58, 119, 110) 100%, rgb(68, 148, 136) 100%, rgb(95, 227, 207) 100%, rgb(105, 255, 232) 100%);
     }
     
     .backgroundImage {
       position: absolute;
+      top: 0;
+      right: 0;
       z-index: 1;
-      transform: translate(15%, 0%);
       width: 100%;
       height: 100%;
       object-fit: cover;
-
       opacity: 65%;
       background-size: cover;
-      filter: blur(106px);
+      backface-visibility: hidden;
+      filter: blur(20px);
+      transform: scale(1);
+      animation: background_image_animation 22s linear infinite;
+      transition: all .4s;
     }
 
     .components {

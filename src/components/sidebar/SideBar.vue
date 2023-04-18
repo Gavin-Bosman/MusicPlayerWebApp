@@ -10,7 +10,7 @@
             <h1 class="brandbox__name">Audio<span class="brandbox__name_span">wave</span></h1>
 
             <!-- Expand/Collapse Button -->
-            <button class="sidebar__button">></button>
+            <button class="sidebar__button" title="Collapse Sidebar">></button>
         </div>
 
         <!-- The Search Bar -->
@@ -85,7 +85,7 @@ export default {
         height: 100vh;
         flex: 0 0 30%;
         opacity: 95%;
-        background-color: $color-dark;
+        background-color: rgba(24, 24, 24, 0.90);
         padding: 3.5rem 5rem;
 
         position: relative;
@@ -105,10 +105,10 @@ export default {
             justify-content: center;
             border: none;
             color: #c9c9c9;
-            background-color: $color-grey-dark;
+            background-color: rgb(51, 51, 51);
             cursor: pointer;
             box-shadow: 0px 3px 7px 0px #00000041;
-            transform: translateX(7rem);
+            // transform: translateX(7rem);
             transition: all 0.2s ease-in-out;
 
             &:hover {
@@ -158,13 +158,13 @@ export default {
 
         &__input {
             border: none;
-            background-color: $color-grey-dark;
+            background-color: rgba(45, 45, 45, 0.9);
             padding: 1.8rem 2rem;
-            width: 90%;
+            width: 95%;
             border-radius: 5px;
             font-size: 1.5rem;
             font-weight: 400;
-            color: $color-grey;
+            color: rgb(199, 199, 199);
             transition: all .2s;
             margin-right: -4rem;
 
@@ -174,9 +174,11 @@ export default {
                 color: $color-dark;
                 background-color: $color-white;
             }
-
+            &::placeholder {
+                color: $color-grey-lighter;
+            }
             &::-webkit-input-placeholder {
-                color: $color-grey;
+                color: $color-grey-lighter;
             }
         }
 

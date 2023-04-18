@@ -63,7 +63,7 @@
                 
             </div>
             
-            <audio preload="none" class="audioPlayer" controls autoplay :src="songURL" :volume="0.3" style="margin-top: 50px;"></audio>
+            <audio preload="none" class="audioPlayer" controls autoplay :src="songURL" :volume="0.3"></audio>
 
         </div>
     </div>
@@ -144,12 +144,13 @@ export default {
         display: flex;
         justify-content: right;
         flex-direction: row;
-        flex-grow: 0.25;
         position: relative;
-        padding: 45px;
+        padding: 3rem 5rem;
+        padding-bottom: 0;
     }
     .audioPlayer {
-        width: 100%; 
+        width: 150%;
+        margin-top: 3rem;
         background: transparent !important;
         border: none;
     }
@@ -199,20 +200,21 @@ export default {
                 margin-top: 2rem;
                 color: $color-white;
                 line-height: normal;
-                text-shadow: 0px 5px 5px #000000bb;
+                text-shadow: 0px 4px 4px #000000bb;
 
                 &-songname {
                     font-size: 3rem;
                     font-weight: 500;
-                    letter-spacing: 3px;
+                    letter-spacing: 1px;
                     
                 }
 
                 &-artistname {
                     font-size: 2rem;
                     font-weight: 400;
-                    color: $color-grey-lighter;
+                    color: rgb(220, 220, 220);
                     margin-top: 1rem;
+                    text-shadow: 0px 3px 3px #000000bb;
                 }
             }
 
@@ -220,6 +222,8 @@ export default {
             &_controls {
 
                 display: flex;
+                display: none; // TEMPORARILY DISPLAYING NOTHING - REMOVE THIS WHEN YOU GET THE CONTROLS WORKING
+
                 align-items: center;
                 justify-content: center;
                 flex-direction: column;
