@@ -27,4 +27,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 Gavin Bosman - SID: 100781902 <br>
 Dewan Mohammad Tasinuzzaman - SID: 100791988<br>
 Mekael Wasti - SID: 100780179
-.Mohammmad-STD:100755461
+.Mohammmad-STD:100755461<br>
