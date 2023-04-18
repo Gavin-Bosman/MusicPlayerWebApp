@@ -439,7 +439,6 @@
 
         color: rgb(255, 67, 67);
         text-align: left;
-        font-size: medium;
     }
 
 </style>
