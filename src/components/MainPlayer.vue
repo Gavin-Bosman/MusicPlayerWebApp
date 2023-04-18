@@ -5,6 +5,7 @@
       <SideBar class="components" @songPlayed="playSong" :songs="songs" />
       <div class="controlsContainer">
         <PlayerControls :songURL="playingURL" :songName="songName" :artistName="artistName" :songLength="songLength" :coverArt="coverArt"/>
+        <SongVisualizer />
       </div>
       <img class="backgroundImage" :src="`${this.coverArt}`" alt="BlurredCoverImage">
     </div>
@@ -16,6 +17,7 @@
 
 import SideBar from './sidebar/SideBar';
 import PlayerControls from './player/PlayerControls';
+import SongVisualizer from './SongVisualizer.vue';
 // import testSongFetch from './testSongFetch';
 import axios from 'axios';
 
@@ -25,6 +27,8 @@ export default {
   components: {
     SideBar,
     PlayerControls,
+    SongVisualizer
+    
     // testSongFetch
   },
   data() {

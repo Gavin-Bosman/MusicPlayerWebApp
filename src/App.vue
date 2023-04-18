@@ -3,16 +3,19 @@
 
   <!-- Main Window/Component -->
   <MainPlayer />
+  <SongVisualizer />
   
 </template>
 
 <script>
 import MainPlayer from './components/MainPlayer'
+import SongVisualizer from './components/SongVisualizer.vue'
 
 export default {
   name: 'App',
   components: {
-    MainPlayer
+    MainPlayer,
+    SongVisualizer
   }
 }
 </script>
