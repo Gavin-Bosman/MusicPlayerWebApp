@@ -112,16 +112,26 @@
           </button>
 
           <!-- Volume Button -->
-          <div>
-            <img src="../../assets/volumeIcon.png" alt="" />
-            <div class="volumeBar" ref="volumeBar">
-              <div
-                class="volumeBarFilled"
-                :style="{
-                  width: this.volume ? this.volume + 'px' : 0,
-                }"
-              ></div>
-            </div>
+          <div
+            class="volumeBar"
+            ref="volumeBar"
+            @mousedown="startVolumeBarDrag"
+            @mousemove="dragVolumeBar"
+            @touchstart="startVolumeBarDrag"
+            @touchmove="dragVolumeBar"
+            @mouseup="endVolumeBarDrag"
+            @touchend="endVolumeBarDrag"
+            @mousewheel="scrollVolumeBar"
+          >
+            <!-- <img src="../../assets/volumeIcon. png" alt="" /> -->
+            <div
+              class="volumeBarFilled"
+              :style="{
+                width: this.isDraggingVol
+                  ? this.volume + 'px'
+                  : this.volume + 'px',
+              }"
+            ></div>
           </div>
         </div>
       </div>
@@ -134,7 +144,7 @@
         autoplay
         :src="songURL"
         :volume="0.3"
-        style="margin-top: 50px"
+        style="margin-top: 50px; display: none"
       ></audio>
     </div>
   </div>
@@ -146,6 +156,7 @@ export default {
   props: {
     songs: {
       type: Array,
+      default: () => [],
     },
     songName: {
       type: String,
@@ -167,6 +178,10 @@ export default {
       type: [String, Number],
       default: "",
     },
+    currentIndex: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
@@ -175,7 +190,9 @@ export default {
       currentState: require("@/assets/pause_icon.svg"),
       currentTime: "0:00",
       progress: 0,
-      volume: 50,
+      volume: 3,
+      isDragging: false,
+      isDraggingVol: false,
     };
   },
   methods: {
@@ -189,12 +206,18 @@ export default {
       }
     },
     next() {
-      this.$refs.audioPlayer.next();
-      console.log("NEXT");
+      if (this.currentIndex + 1 < this.songs.length) {
+        this.$emit("nextSong", this.songs[this.currentIndex + 1].fileName);
+      }
     },
     previous() {
-      this.$refs.audioPlayer.previous();
-      console.log("PREVIOUS");
+      if (this.$refs.audioPlayer.currentTime > 4) {
+        this.$refs.audioPlayer.currentTime = 0;
+        return;
+      }
+      if (this.currentIndex - 1 > -1) {
+        this.$emit("previousSong", this.songs[this.currentIndex - 1].fileName);
+      }
     },
     // Format Length of Song Timestamps
     formatLengthM(time) {
@@ -215,6 +238,7 @@ export default {
     },
     startProgressBarDrag(event) {
       this.isDragging = true;
+      this.isDragging = true;
       this.dragProgressBar(event);
       document.addEventListener("mousemove", this.dragProgressBar);
       document.addEventListener("mouseup", this.endProgressBarDrag);
@@ -222,8 +246,14 @@ export default {
     dragProgressBar(event) {
       if (this.isDragging) {
         const barRect = this.$refs.progressBar.getBoundingClientRect();
-        const position = event.pageX || event.touches[0].pageX;
-        const progress = (position - barRect.left) / barRect.width;
+        let position = event.pageX || event.touches[0].pageX;
+        let progress = (position - barRect.left) / barRect.width;
+
+        if (progress > 1) {
+          progress = 1;
+          position = barRect.right;
+        }
+
         this.progress = progress * 100;
         this.position = position - barRect.left;
       }
@@ -243,6 +273,79 @@ export default {
         document.addEventListener("mousemove", this.dragProgressBar);
         document.addEventListener("mouseup", this.endProgressBarDrag);
       }
+    },
+    // Volume Bar Interactivity Methods
+    startVolumeBarDrag(event) {
+      this.isDraggingVol = true;
+      this.dragProgressBar(event);
+      document.addEventListener("mousemove", this.dragVolumeBar);
+      document.addEventListener("mouseup", this.endVolumeBarDrag);
+    },
+    dragVolumeBar(event) {
+      if (this.isDraggingVol) {
+        const barRect = this.$refs.volumeBar.getBoundingClientRect();
+        let positionVol = event.pageX || event.touches[0].pageX;
+        let volume = (positionVol - barRect.left) / barRect.width;
+
+        if (volume > 1) {
+          volume = 1;
+          positionVol = barRect.right;
+        }
+        if (volume < 0) {
+          volume = 0;
+          positionVol = barRect.right;
+        }
+
+        this.volume = volume * 100;
+        this.positionVol = positionVol - barRect.left;
+      }
+    },
+    endVolumeBarDrag(event) {
+      if (this.isDraggingVol) {
+        this.isDraggingVol = false;
+        const audio = this.$refs.audioPlayer;
+
+        const barRect = this.$refs.volumeBar.getBoundingClientRect();
+        let positionVol = event.pageX || event.touches[0].pageX;
+        let volume = (positionVol - barRect.left) / barRect.width;
+        volume = volume * 100;
+        positionVol = positionVol - barRect.left;
+
+        if (volume > 100) {
+          volume = 100;
+          this.volume = 100;
+          positionVol = barRect.right;
+        }
+        if (volume < 0) {
+          volume = 0;
+          this.volume = 0;
+          positionVol = barRect.right;
+        }
+
+        //Divide by 4 because player starts compressing way too fast
+        audio.volume = volume / 100 / 4;
+        document.addEventListener("mousemove", this.dragVolumeBar);
+        document.addEventListener("mouseup", this.endVolumeBarDrag);
+      }
+    },
+    scrollVolumeBar(event) {
+      const scrollPos = event.deltaY;
+
+      if (scrollPos < 0) {
+        if (this.volume + 8 <= 100) {
+          this.volume += 8;
+        } else {
+          this.volume = 100;
+        }
+      } else {
+        if (this.volume - 8 >= 0) {
+          this.volume -= 8;
+        } else {
+          this.volume = 0;
+        }
+      }
+      //Divide by 4 because player starts compressing way too fast
+      this.$refs.audioPlayer.volume = this.volume / 100 / 4;
     },
   },
   components: {},
@@ -279,6 +382,7 @@ export default {
     } else {
       this.currentTime = "0:00";
     }
+    this.$refs.audioPlayer.volume = this.volume / 100;
   },
 };
 </script>
@@ -312,10 +416,10 @@ export default {
 }
 
 .volumeBar {
-  position: relative;
+  position: absolute;
   height: 10px;
   width: 10rem;
-  margin: 0px 1rem 2px 1rem;
+  margin: 0px 1rem 2px 56rem;
   background-color: rgb(255, 255, 255, 0.25);
   border-radius: 10px;
   user-select: none;

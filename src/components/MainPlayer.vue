@@ -9,12 +9,17 @@
       :songs="songs"
     />
     <PlayerControls
+      v-if="loadedSongs"
       class="components"
       :songURL="playingURL"
       :songName="songName"
       :artistName="artistName"
       :songLength="songLength"
       :coverArt="coverArt"
+      :songs="songs"
+      :currentIndex="currentIndex"
+      @nextSong="playSong"
+      @previousSong="playSong"
     />
     <img class="backgroundImage" :src="`${this.coverArt}`" alt="" />
   </div>
@@ -36,6 +41,8 @@ export default {
   data() {
     return {
       songs: [],
+      loadedSongs: true,
+      currentIndex: 0,
       songID: "",
       songName: "",
       artistName: "",
@@ -51,6 +58,7 @@ export default {
       try {
         const response = await axios.get("http://localhost:5000/api/songs");
         this.songs = response.data;
+        this.loadedSongs = true;
       } catch (error) {
         console.error("Error fetching song list", error);
       }
@@ -79,6 +87,10 @@ export default {
       } else {
         console.error("Error: songID is empty");
       }
+      this.currentIndex = this.songs.findIndex(
+        (song) => song.fileName === this.songName
+      );
+      console.log(this.currentIndex);
       // console.log(this.song, this.songURL, this.artistName, this.coverArt);
     },
   },
