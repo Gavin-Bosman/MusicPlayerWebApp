@@ -115,6 +115,7 @@
 
         <!-- Volume Button -->
         <div
+          title="DRAG For Volume"
           class="volumeBar"
           ref="volumeBar"
           @mousedown="startVolumeBarDrag"
@@ -127,6 +128,7 @@
         >
           <!-- <img src="../../assets/volumeIcon. png" alt="" /> -->
           <div
+            title="DRAG For Volume"
             class="volumeBarFilled"
             :style="{
               width: this.isDraggingVol
@@ -416,6 +418,7 @@ export default {
   /* transition: width 0.2s ease-in-out, left 0.2s ease-in-out; */
   border-radius: 10px;
   user-select: none;
+  cursor: pointer;
   overflow: hidden;
 
   @include respond(mediumScreen) { // Width < 1400 ?
@@ -440,6 +443,7 @@ export default {
   background-color: rgb(255, 255, 255);
   /* transition: width 0.2s ease-in-out, left 0.2s ease-in-out; */
   border-radius: 10px;
+  cursor: pointer;
 }
 
 
@@ -451,6 +455,7 @@ export default {
   background-color: rgb(255, 255, 255, 0.25);
   border-radius: 10px;
   user-select: none;
+  cursor: pointer;
   overflow: hidden;
 
   @include respond(mediumScreen) { // Width < 1400 ?
@@ -477,6 +482,7 @@ export default {
   background-color: rgb(255, 255, 255);
   /* transition: width 0.2s ease-in-out, left 0.2s ease-in-out; */
   border-radius: 10px;
+  cursor: pointer;
 }
 .circle {
   position: relative;
@@ -484,6 +490,7 @@ export default {
   height: 17px;
   border-radius: 50%;
   background-color: rgb(255, 255, 255);
+  cursor: pointer;
   display: none;
 }
 
