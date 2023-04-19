@@ -1,14 +1,10 @@
 <!-- Player Controls Component -->
 
 <template>
-
-    <!-- Login/Signup Top Bar -->
     <div class="login_container" >
             <LoginButton v-if="loggedIn == false" @LogIn="displayAccount" />
             <AccountMenu v-if="loggedIn == true" />
     </div>
-
-    <!-- Player -->
     <div class="player">
         <div class="player__contents">
             <!-- Image -->
@@ -23,8 +19,51 @@
                 <h3 class="player__contents_details-songname">{{ songName }}</h3>
                 <h4 class="player__contents_details-artistname">{{ artistName }}</h4>
             </div>
+
+            <!-- Progress Bar and Controls -->
+            <div class="player__contents_controls">
+
+                <!-- The bar -->
+                <div class="player__contents_controls-progressbar">
+
+                    <!-- Timestamp -->
+                    <p class="player__contents_controls-progressbar--timestamp">3:02</p>
+
+                    <!-- The bar -->
+                    <div class="player__contents_controls-progressbar--bar">
+                        <!-- The part of the bar that moves as the song progresses -->
+                        <div class="player__contents_controls-progressbar--bar---progress"></div>
+                    </div>
+
+                    <!-- Total duration of the song that's playing -->
+                    <p class="player__contents_controls-progressbar--duration">{{ songLength ? formatLength(songLength) : '0:00' }}</p>
+
+
+                </div>
+
+                <!-- The control buttons -->
+                <div class="player__contents_controls-buttons">
+
+                    <!-- Prev Button -->
+                    <button class="player__contents_controls-buttons--prevbox button-animation-2">
+                        <img class="player__contents_controls-buttons--prevbox---icon" src="../../assets/prev_icon.svg" alt="Prev. Button">
+                    </button>
+
+                    <!-- Play/Pause Button -->
+                    <button class="player__contents_controls-buttons--playpausebox button-animation-1">
+                        <img class="player__contents_controls-buttons--playpausebox---icon" src="../../assets/pause_icon.svg" alt="Pause/Play Button">
+                    </button>
+
+                    <!-- Next Button -->
+                    <button class="player__contents_controls-buttons--nextbox button-animation-2">
+                        <img class="player__contents_controls-buttons--nextbox---icon" src="../../assets/next_icon.svg" alt="Next Button">
+                    </button>
+
+                </div>
+                
+            </div>
             
-            <audio preload="none" class="audioPlayer player__contents_audioPlayer" controls autoplay :src="songURL" :volume="0.3"></audio>
+            <audio preload="none" class="audioPlayer" controls autoplay :src="songURL" :volume="0.3"></audio>
 
         </div>
     </div>
@@ -100,17 +139,23 @@ export default {
 
     @import "../../sass/variables";
     @import "../../sass/utilityClasses";
+    @import "../../sass/mediaquery-manager";
 
-
-    // Login stuff
     .login_container {
         display: flex;
         justify-content: right;
+        flex-direction: row;
+        position: relative;
         padding: 3rem 3rem;
+        padding-bottom: 0;
     }
-
-
-
+    .audioPlayer {
+        width: 150%;
+        margin-top: 3rem;
+        background: transparent !important;
+        border: none;
+        display: none; // Remove/comment-out this line if you want to see the html audio player
+    }
 
     .player {
         //flex: 0 0 70%;
@@ -157,28 +202,160 @@ export default {
                 margin-top: 2rem;
                 color: $color-white;
                 line-height: normal;
-                text-shadow: 0px 5px 5px #000000bb;
+                text-shadow: 0px 4px 4px #000000bb;
 
                 &-songname {
                     font-size: 3rem;
                     font-weight: 500;
-                    letter-spacing: 3px;
+                    letter-spacing: 1px;
                     
                 }
 
                 &-artistname {
                     font-size: 2rem;
                     font-weight: 400;
-                    color: $color-grey-lighter;
+                    color: rgb(220, 220, 220);
                     margin-top: 1rem;
+                    text-shadow: 0px 3px 3px #000000bb;
                 }
             }
 
-            &_audioPlayer {
-                width: 150%;
-                margin-top: 3rem; 
-                background-color: rgba(255, 255, 255, 0); 
-                border-radius: 6px !important;
+
+            &_controls {
+
+                display: flex;
+                //display: none; // TEMPORARILY DISPLAYING NOTHING - REMOVE THIS WHEN YOU GET THE CONTROLS WORKING
+
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+
+                margin-top: 1rem;
+
+
+                // Progress Bar
+                &-progressbar {
+
+                    display: flex;
+                    align-items: center;
+
+                    text-shadow: 0px 2px 3px #000000bb;
+
+                    &--timestamp {
+                        color: $color-white;
+                        font-size: 1.4rem;
+                        font-weight: 400;
+                    }
+
+                    &--bar {
+                        
+                        position: relative;
+                        width: 65rem;
+                        height: 6px;
+                        background-color: rgba(255, 255, 255, 0.25);
+                        border-radius: 40px;
+                        margin-left: 1rem;
+                        margin-right: 1rem;
+
+                        @include respond(tabletScreen) { // Width < 1000 ?
+                            width: 40rem;
+                        }
+                        @include respond(tabletSmallScreen) { // Width < 650 ?
+                            width: 30rem;
+                        }
+                        @include respond(phoneScreen) { // Width < 450 ?
+                            width: 25rem;
+                        }
+
+
+                        &---progress {
+
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 70%; // This property should change dynamically as the song progresses
+                            border-radius: 40px;
+                            background-color: $color-white;
+                        }
+                    }
+
+                    &--duration {
+                        color: $color-white;
+                        font-size: 1.4rem;
+                        font-weight: 400;
+                    }
+                }
+
+
+                // Button controls
+                &-buttons {
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    margin-top: 1rem;
+
+
+                    &--prevbox {
+
+                        margin-top: 1.0rem;
+                        background-color: transparent;
+                        border: none;
+                        width: 5rem;
+                        height: 5rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        transition: all 0.2s ease-out;
+
+                        &---icon {
+                            width: 90%;
+                        }
+                    }
+
+                    &--playpausebox {
+
+                        margin-left: 2rem;
+                        margin-right: 2rem;
+                        width: 6rem;
+                        height: 6rem;
+                        border-radius: 50%;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: none;
+                        background-color: $color-white;
+                        cursor: pointer;
+                        box-shadow: 0px 5px 6px 0px #00000070;
+                        transition: all 0.2s ease-out;
+
+                        &---icon {
+                            width: 30%;
+                        }
+                    }
+
+                    &--nextbox {
+
+                        margin-top: 1.0rem;
+                        background-color: transparent;
+                        border: none;
+                        width: 5rem;
+                        height: 5rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        transition: all 0.2s ease-out;
+
+                        &---icon {
+                            width: 90%;
+                        }
+                    }
+                }
             }
         }
     }

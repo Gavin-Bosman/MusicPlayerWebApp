@@ -225,18 +225,19 @@
 <style lang='scss'>
     @import "../../../sass/variables";
     @import "../../../sass/utilityClasses";
+    @import "../../../sass/mediaquery-manager";
 
     #signupButton {
 
         font-family: 'Ubuntu', sans-serif;
         font-weight: 400; //Regular
+        font-size: 1.6rem;
+        letter-spacing: 0.5px;
 
         width: 12rem;
         height: 5rem;
         z-index: 2;
 
-        font-size: 1.6rem;
-        letter-spacing: 0.5px;
         background-color: $color-white;
         color: $color-grey-darker;
         padding: 5px 10px;
@@ -248,6 +249,17 @@
         cursor: pointer;
 
         transition: all .3s ease-out;
+
+        @include respond(tabletSmallScreen) { // Width < 650 ?
+            font-size: 1.4rem;
+            width: 8.4rem;
+            height: 3.5rem;
+        }
+        @include respond(phoneScreen) { // Width < 450 ?
+            font-size: 1.4rem;
+            width: 9.4rem;
+            height: 3.5rem;
+        }
 
         &:hover {
             background-color: $color-grey-dark;
@@ -283,6 +295,20 @@
 
         transition: all .3s ease-out;
 
+
+        @include respond(tabletSmallScreen) { // Width < 650 ?
+            font-size: 1.4rem;
+            width: 10rem;
+            height: 3.5rem;
+            margin-left: -35px;
+        }
+        @include respond(phoneScreen) { // Width < 450 ?
+            font-size: 1.4rem;
+            width: 11rem;
+            height: 3.5rem;
+            margin-left: -25px;
+        }
+
         &:hover {
             background-color: $color-grey-dark;
             color: $color-grey-lighter;
@@ -298,8 +324,8 @@
         z-index: 4; /* Sit on top */
         left: 0;
         top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
+        width: 100vw; /* Full width */
+        height: 100vh; /* Full height */
         overflow: auto; /* Enable scroll if needed */
         background-color: rgb(0,0,0); /* Fallback color */
         background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
@@ -308,16 +334,24 @@
     .modal-content {
 
         display: flex;
+        position: fixed;
         justify-content: center;
         align-content: center;
         flex-direction: column;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
 
         background-color: $color-dark;
         box-shadow: 0 0 30px 0px black;
-        margin: 10% auto; /* 15% from the top and centered */
-        //padding: 20px;
         border-radius: 10px;
-        width: 50%; /* Could be more or less, depending on screen size */
+        
+
+        @include respond(tabletScreen) { // Width < 1000 ?
+            width: 80%;
+            left: 45%;
+        }
     }
 
     .closeContainer {
@@ -345,8 +379,13 @@
         text-align: center;
         display: flex;
         flex-direction: column;
-        // overflow-x: hidden;
-        // overflow-y: scroll;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: 50rem;
+
+        @include respond(tabletScreen) { // Width < 1000 ?
+            height: 45rem;
+        }
     }
 
     .modal-header {
