@@ -139,13 +139,14 @@ export default {
 
     @import "../../sass/variables";
     @import "../../sass/utilityClasses";
+    @import "../../sass/mediaquery-manager";
 
     .login_container {
         display: flex;
         justify-content: right;
         flex-direction: row;
         position: relative;
-        padding: 3rem 5rem;
+        padding: 3rem 3rem;
         padding-bottom: 0;
     }
     .audioPlayer {
@@ -153,6 +154,7 @@ export default {
         margin-top: 3rem;
         background: transparent !important;
         border: none;
+        display: none; // Remove/comment-out this line if you want to see the html audio player
     }
 
     .player {
@@ -222,7 +224,7 @@ export default {
             &_controls {
 
                 display: flex;
-                display: none; // TEMPORARILY DISPLAYING NOTHING - REMOVE THIS WHEN YOU GET THE CONTROLS WORKING
+                //display: none; // TEMPORARILY DISPLAYING NOTHING - REMOVE THIS WHEN YOU GET THE CONTROLS WORKING
 
                 align-items: center;
                 justify-content: center;
@@ -254,6 +256,17 @@ export default {
                         border-radius: 40px;
                         margin-left: 1rem;
                         margin-right: 1rem;
+
+                        @include respond(tabletScreen) { // Width < 1000 ?
+                            width: 40rem;
+                        }
+                        @include respond(tabletSmallScreen) { // Width < 650 ?
+                            width: 30rem;
+                        }
+                        @include respond(phoneScreen) { // Width < 450 ?
+                            width: 25rem;
+                        }
+
 
                         &---progress {
 

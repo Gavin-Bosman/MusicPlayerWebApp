@@ -1,0 +1,24 @@
+// Breakpoints
+$bp-medium: 87.5em; // 1450px
+$bp-tablet: 62.5em; // 1000px
+$bp-tablet-small: 40.625em; // 650px
+$bp-phone: 28.125em; // 450px
+$bp-phone-small: 18.75em; // 300px
+
+@mixin respond($breakpoint) {
+    @if $breakpoint==phoneSmallScreen {
+        @media only screen and (max-width: $bp-phone-small) { @content }; // 300px
+    }
+    @if $breakpoint==phoneScreen {
+        @media only screen and (max-width: $bp-phone) { @content }; // 450px
+    }
+    @if $breakpoint==tabletSmallScreen {
+        @media only screen and (max-width: $bp-tablet-small) { @content }; // 450px
+    }
+    @if $breakpoint==tabletScreen {
+        @media only screen and (max-width: $bp-tablet) { @content }; // 1000px
+    }
+    @if $breakpoint==mediumScreen {
+        @media only screen and (max-width: $bp-medium) { @content }; // 1400px
+    }
+}

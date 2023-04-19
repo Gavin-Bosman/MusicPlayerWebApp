@@ -89,6 +89,7 @@ export default {
 
     @import "../sass/variables";
     @import "../sass/animations";
+    @import "../sass/mediaquery-manager";
 
     .main__window {
         min-width: 100vw;

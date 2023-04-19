@@ -103,6 +103,7 @@ export default {
 
         &__details {
 
+            width: 60%;
             display: flex;
             flex-direction: column;
             margin-left: 1.5rem;

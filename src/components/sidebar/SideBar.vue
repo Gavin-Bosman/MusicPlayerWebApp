@@ -1,7 +1,7 @@
 <!-- Main Sidebar Component -->
 
 <template>
-    <nav class="sidebar">
+    <nav class="sidebar" :class="{sidebar__collapse:collapse}">
         <!-- Logo and Name -->
         <div class="brandbox d-flex">
             <div class="brandbox__logobox">
@@ -10,7 +10,7 @@
             <h1 class="brandbox__name">Audio<span class="brandbox__name_span">wave</span></h1>
 
             <!-- Expand/Collapse Button -->
-            <button class="sidebar__button" title="Collapse Sidebar">></button>
+            <button class="sidebar__button" :class="{sidebar__button_position:collapse}" title="Collapse/Expand Sidebar" v-on:click="collapse=!collapse" @click="changeButtonText" style="opacity: 100% !important;">{{ buttonText }}</button>
         </div>
 
         <!-- The Search Bar -->
@@ -59,13 +59,23 @@ export default {
     return {
         // songs: [],
         // songURL: '',
+        collapse: false, //Collapsed or Not
+
+        buttonText: '<'
     };
- },
- methods: {
+  },
+  methods: {
     handleSongPlayed(song) {
         this.$emit('songPlayed', song);
+    },
+    changeButtonText() {
+      if (this.buttonText === '<') {
+        this.buttonText = '>';
+      } else {
+        this.buttonText = '<';
+      }
     }
- }
+  }
 }
 </script>
 
@@ -76,8 +86,9 @@ export default {
 
     @import "../../sass/variables";
     @import "../../sass/utilityClasses";
+    @import "../../sass/mediaquery-manager";
 
-    // General sidebar Styling
+    // General sidebar Styling (Scroll towards the end for useful classes used for sidebar function)
     .sidebar {
         position: relative;
         top: 0;
@@ -86,10 +97,18 @@ export default {
         flex: 0 0 30%;
         opacity: 95%;
         background-color: rgba(24, 24, 24, 0.90);
-        padding: 3.5rem 5rem;
+        padding: 3.5rem 2.2rem;
 
         position: relative;
         z-index: 4 !important;
+        transition: all .5s ease-out !important;
+
+        @include respond(mediumScreen) { // Width < 1400 ?
+            flex: 0 0 40%;
+        }
+        @include respond(tabletScreen) { // Width < 1000 ?
+            flex: 0 0 95%;
+        }
 
 
         &__button {
@@ -124,15 +143,18 @@ export default {
     .brandbox {
 
         align-items: center;
+        transition: all .3s ease-out;
         
         &__logobox {
             width: 5rem;
             height: 5rem;
             margin-right: 1.5rem;
+            transition: all .3s ease-out;
 
             &_logo {
                 width: 100%;
                 height: 100%;
+                transition: all .3s ease-out;
             }
         }
 
@@ -141,9 +163,11 @@ export default {
             font-size: 3rem;
             font-weight: 400;
             letter-spacing: 3px;
+            transition: all .3s ease-out;
 
             &_span {
                 color: $color-primary;
+                transition: all .3s ease-out;
             }
         }
     }
@@ -155,6 +179,8 @@ export default {
         align-items: center;
 
         margin-top: 2rem;
+
+        transition: all .3s ease-out;
 
         &__input {
             border: none;
@@ -188,6 +214,7 @@ export default {
             height: 2.5rem;
             background-color: transparent;
             cursor: pointer;
+            transition: all .3s ease-out;
 
             &:focus {
                 outline: none;
@@ -204,7 +231,6 @@ export default {
         }
     }
 
-
     // Songs
     .songs__header {
         margin-top: 2rem;
@@ -213,6 +239,7 @@ export default {
         letter-spacing: 1px;
         font-size: 1.5rem;
         border-bottom: 1px solid $color-grey-darker;
+        transition: all .3s ease-out;
     }
 
     .songslist {
@@ -223,6 +250,28 @@ export default {
         overflow-x: hidden;
         overflow-y: scroll;
         box-shadow: inset -4px 0px 10px 1px rgba(0, 0, 0, 0.055);
+        transition: all .3s ease-out;
+    }
+
+
+    // Classes to help sidebar collapse/expand
+    .sidebar__collapse {
+        flex: 0 0 0%;
+        width: 0px !important;
+        overflow: hidden;
+        padding: 0px;
+
+        & > *:not(:first-child) {
+            opacity: 0;
+        }
+    }
+    .sidebar__button_position {
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 3rem;
+        margin-right: 0px;
+        margin-bottom: 0px;
     }
     
 </style>
