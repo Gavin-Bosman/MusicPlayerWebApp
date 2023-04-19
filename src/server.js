@@ -7,6 +7,14 @@ const { MongoClient, ObjectId } = require('mongodb');
 
 // Add your MongoDB connection string
 const MONGODB_CONNECTION_STRING = 'mongodb://127.0.0.1:27017';
+// Cloud
+// const MONGODB_CONNECTION_STRING = 'mongodb+srv://AMPLE:nk37UlwAY2plxYWG@ample.ytcxexo.mongodb.net/test';
+// Cloud Serverless [TERMINATED]
+// const MONGODB_CONNECTION_STRING = 'mongodb+srv://Cluster0-MW:368NoHhHPrW9WbF8@ample-mw.aqqgkvp.mongodb.net/test';
+// Cloud Serverless Dedicated 
+// const MONGODB_CONNECTION_STRING = 'mongodb+srv://AMPLE-MW:368NoHhHPrW9WbF8@cluster0.h2irq.mongodb.net/test';
+
+
 const DATABASE_NAME = 'songDB';
 const COLLECTION_NAME = 'songs';
 

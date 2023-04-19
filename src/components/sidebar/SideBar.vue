@@ -8,6 +8,8 @@
                 <img class="brandbox__logobox_logo" src="../../assets/logo_white_stroke.svg" alt="Audiowave Logo">
             </div>
             <h1 class="brandbox__name">Audio<span class="brandbox__name_span">wave</span></h1>
+            <!-- <h1 class="brandbox__name">Audio<span class="brandbox__name_span">wave</span></h1> -->
+            <h1 class="brandbox__name">AMPLE</h1>
 
             <!-- Expand/Collapse Button -->
             <button class="sidebar__button" :class="{sidebar__button_position:collapse}" title="Collapse/Expand Sidebar" v-on:click="collapse=!collapse" @click="changeButtonText" style="opacity: 100% !important;">{{ buttonText }}</button>
@@ -36,24 +38,20 @@
     </nav>
 </template>
 
-
-
-
 <script>
-
 // import axios from 'axios';
-import SongItem from './SongItem';
+import SongItem from "./SongItem";
 
 export default {
-  name: 'SideBar',
+  name: "SideBar",
   props: {
     songs: {
-        type: Array,
-        default: () => [],
-    }
+      type: Array,
+      default: () => [],
+    },
   },
   components: {
-    SongItem
+    SongItem,
   },
   data() {
     return {
@@ -79,10 +77,26 @@ export default {
 }
 </script>
 
+// (Logo and Name) Styling
+.brandbox {
+  align-items: center;
 
+  &__logobox {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 1.5rem;
 
+    &_logo {
+      width: 100%;
+      height: 100%;
+    }
+  }
 
-<style lang="scss">
+  &__name {
+    color: $color-white;
+    font-size: 3rem;
+    font-weight: 400;
+    letter-spacing: 3px;
 
     @import "../../sass/variables";
     @import "../../sass/utilityClasses";
@@ -138,6 +152,8 @@ export default {
             }
         }
     }
+  }
+}
 
     // (Logo and Name) Styling
     .brandbox {
@@ -230,6 +246,7 @@ export default {
             }
         }
     }
+  }
 
     // Songs
     .songs__header {
@@ -273,5 +290,31 @@ export default {
         margin-right: 0px;
         margin-bottom: 0px;
     }
-    
+
+    &_icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+// Songs
+.songs__header {
+  margin-top: 2rem;
+  color: $color-white;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  border-bottom: 1px solid $color-grey-darker;
+}
+
+.songslist {
+  position: relative;
+  margin-top: 2rem;
+  width: 100%;
+  height: 65%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  box-shadow: inset -4px 0px 10px 1px rgba(0, 0, 0, 0.055);
+}
 </style>
