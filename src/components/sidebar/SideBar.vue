@@ -14,8 +14,6 @@
       <h1 class="brandbox__name">
         Audio<span class="brandbox__name_span">wave</span>
       </h1>
-      <!-- <h1 class="brandbox__name">Audio<span class="brandbox__name_span">wave</span></h1> -->
-      <h1 class="brandbox__name">AMPLE</h1>
 
       <!-- Expand/Collapse Button -->
       <button

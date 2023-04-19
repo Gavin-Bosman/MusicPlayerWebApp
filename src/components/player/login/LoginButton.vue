@@ -381,7 +381,7 @@
         flex-direction: column;
         overflow-x: hidden;
         overflow-y: scroll;
-        height: 50rem;
+        height: min-content;
 
         @include respond(tabletScreen) { // Width < 1000 ?
             height: 45rem;

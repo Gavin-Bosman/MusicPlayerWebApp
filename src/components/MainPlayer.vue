@@ -152,12 +152,11 @@ export default {
   opacity: 65%;
   background-size: cover;
   backface-visibility: hidden;
-  /* filter: blur(20px); */
-  filter: blur(106px);
+  filter: blur(20px);
 
   transform: scale(1);
-  /* animation: background_image_animation 22s linear infinite; */
-  /* transition: all 0.4s; */
+  animation: background_image_animation 22s linear infinite;
+  transition: all 0.4s;
 }
 
 .components {

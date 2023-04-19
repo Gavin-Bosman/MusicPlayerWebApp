@@ -1,0 +1,22 @@
+Members Contribution
+Name: Gavin Bosman
+Contribution:
+
+Name: DEWAN MOHAMMAD TASINUZZAMAN
+Contribution: - Designed a prototype in Figma and then coded the entire front-end/UI for the app using Vue.js. 
+Created components (eg. functioning side-bar), animations etc. where needed and refined the UI.
+Finally, made the whole app responsive so it works on all devices.
+
+Name: Mekael Wasti
+Contribution:
+
+Name: .Mohammad
+Contribution:  Added styling for the login and signup buttons as well as their page/modal. 
+Fixed other small issues such as login/signup modal going out of the page when it gives the user suggestions 
+regarding the email/password they provide.
+
+Name: Eric d'souza
+Contribution:
+
+Name: Moharaj Oritro
+Contribution: 

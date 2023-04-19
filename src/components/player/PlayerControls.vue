@@ -408,6 +408,7 @@ export default {
 }
 .progressBar {
   position: relative;
+  line-height: normal;
   height: 10px;
   width: 65rem;
   margin: 0px 1rem 2px 1rem;
@@ -415,25 +416,63 @@ export default {
   /* transition: width 0.2s ease-in-out, left 0.2s ease-in-out; */
   border-radius: 10px;
   user-select: none;
+  overflow: hidden;
+
+  @include respond(mediumScreen) { // Width < 1400 ?
+
+  }
+  @include respond(tabletScreen) { // Width < 1000 ?
+    width: 50rem;
+  }
+  @include respond(tabletSmallScreen) { // Width < 650 ?
+    width: 33rem;
+  }
+  @include respond(phoneScreen) { // Width < 450 ?
+    width: 28rem;
+  }
+  @include respond(phoneSmallScreen) { // Width < 300 ?
+
+  }
 }
 .progressBarFilled {
-  height: 10px;
+  height: 100%;
   width: 89%;
   background-color: rgb(255, 255, 255);
   /* transition: width 0.2s ease-in-out, left 0.2s ease-in-out; */
   border-radius: 10px;
 }
+
+
 .volumeBar {
   position: absolute;
   height: 10px;
   width: 10rem;
-  margin: 0px 1rem 2px 56rem;
+  margin-left: 55rem;
   background-color: rgb(255, 255, 255, 0.25);
   border-radius: 10px;
   user-select: none;
+  overflow: hidden;
+
+  @include respond(mediumScreen) { // Width < 1400 ?
+
+  }
+  @include respond(tabletScreen) { // Width < 1000 ?
+    margin-left: 40rem;
+  }
+  @include respond(tabletSmallScreen) { // Width < 650 ?
+    width: 7rem;
+    margin-left: 0;
+    margin-top: 13rem;
+  }
+  @include respond(phoneScreen) { // Width < 450 ?
+
+  }
+  @include respond(phoneSmallScreen) { // Width < 300 ?
+
+  }
 }
 .volumeBarFilled {
-  height: 10px;
+  height: 100%;
   width: 89%;
   background-color: rgb(255, 255, 255);
   /* transition: width 0.2s ease-in-out, left 0.2s ease-in-out; */
@@ -447,6 +486,7 @@ export default {
   background-color: rgb(255, 255, 255);
   display: none;
 }
+
 
 .login_container {
   display: flex;
@@ -470,6 +510,7 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  //transition: all .2s ease-out;
 
   &__contents {
     display: flex;
@@ -487,6 +528,7 @@ export default {
       justify-content: center;
       border: none;
       box-shadow: 0px 5px 20px 0px #00000067;
+      user-select: none;
       &-photo {
         backface-visibility: hidden;
       }
@@ -516,22 +558,24 @@ export default {
     }
     &_controls {
       display: flex;
-      //display: none; // TEMPORARILY DISPLAYING NOTHING - REMOVE THIS WHEN YOU GET THE CONTROLS WORKING
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+
       // Progress Bar
       &-progressbar {
         display: flex;
         align-items: center;
         text-shadow: 0px 2px 3px #000000bb;
+
         &--timestamp {
           color: $color-white;
           font-size: 1.4rem;
           font-weight: 400;
-          transform: translateX(-36rem) translateY(2.7rem);
+          line-height: normal;
+          user-select: none;
         }
+
         &--bar {
           position: relative;
           width: 65rem;
@@ -562,12 +606,13 @@ export default {
             background-color: $color-white;
           }
         }
+
         &--duration {
-          position: absolute;
-          transform: translateX(36rem) translateY(1.98rem);
           color: $color-white;
           font-size: 1.4rem;
           font-weight: 400;
+          line-height: normal;
+          user-select: none;
         }
       }
       // Button controls
@@ -575,7 +620,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 1rem;
+        margin-top: 2rem;
         &--prevbox {
           margin-top: 1rem;
           background-color: transparent;
