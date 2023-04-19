@@ -15,7 +15,7 @@
         </div>
 
         <!-- Play/Pause Button -->
-        <button class="songitem__button" @click="togglePlay">
+        <button class="songitem__button" @click="togglePlay" title="Play">
             <img class="songitem__button_icon" src="../../assets/play_icon.svg" alt="Play/Pause Icon">
         </button>
     </div>
@@ -103,6 +103,7 @@ export default {
 
         &__details {
 
+            width: 60%;
             display: flex;
             flex-direction: column;
             margin-left: 1.5rem;

@@ -20,6 +20,7 @@ export default {
 <style lang="scss">
 
   @import "./sass/variables";
+  @import "./sass/mediaquery-manager";
 
   // Overall Body/App
   *,
@@ -35,6 +36,20 @@ export default {
     font-size: 62.5%;
     overflow-x: hidden;
     overflow-y: hidden;
+    overflow: hidden !important;
+
+    @include respond(mediumScreen) { // Width < 1400 ?
+      font-size: 59.5%;
+    }
+    @include respond(tabletScreen) { // Width < 1000 ?
+      font-size: 69%;
+    }
+    @include respond(phoneScreen) { // Width < 450 ?
+      font-size: 55%;
+    }
+    @include respond(phoneSmallScreen) { // Width < 300 ?
+      font-size: 40%;
+    }
   }
   body {
     font-family: 'Ubuntu', sans-serif;
@@ -42,6 +57,7 @@ export default {
     line-height: 3;
     overflow-x: hidden;
     overflow-y: hidden;
+    overflow: hidden !important;
   }
 
 
