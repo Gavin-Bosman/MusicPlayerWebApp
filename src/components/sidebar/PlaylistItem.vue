@@ -85,7 +85,7 @@ export default {
 
         &__details {
 
-            width: 77%;
+            width: 60%;
             display: flex;
             flex-direction: column;
             margin-left: 1.5rem;
