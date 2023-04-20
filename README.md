@@ -1,5 +1,8 @@
 # music-player web application
 
+Intro Video:
+https://youtu.be/TsqQX_OQNnM
+
 ## Project setup
 ```
 npm install
