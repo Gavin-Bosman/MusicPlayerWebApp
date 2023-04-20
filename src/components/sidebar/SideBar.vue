@@ -41,7 +41,7 @@
 
       <!-- Fetch List of Songs from Database API -->
       <div v-if="songIsSelected">
-        <SongItem @songPlayed="handleSongPlayed" v-for="song in songs" :key="song.id" :songname="song.fileName"
+         <SongItem @songPlayed="handleSongPlayed" v-for="song in filteredSongs" :key="song.id" :songname="song.fileName"
           :artistname="song.artist" :coverimageSrc="song.albumCover" />
       </div>
 
