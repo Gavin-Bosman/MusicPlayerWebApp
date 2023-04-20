@@ -114,29 +114,41 @@
         </button>
 
         <!-- Volume Button -->
-        <div
-          title="DRAG For Volume"
-          class="volumeBar"
-          ref="volumeBar"
-          @mousedown="startVolumeBarDrag"
-          @mousemove="dragVolumeBar"
-          @touchstart="startVolumeBarDrag"
-          @touchmove="dragVolumeBar"
-          @mouseup="endVolumeBarDrag"
-          @touchend="endVolumeBarDrag"
-          @mousewheel="scrollVolumeBar"
-        >
-          <!-- <img src="../../assets/volumeIcon. png" alt="" /> -->
+        <div class="volumeBar__container">
+
+          <div class="volumeBar__iconBox">
+            <img src="../../assets/volumeIcon.png" alt="Volume Icon" class="volumeBar__iconBox_icon">
+          </div>
+
           <div
             title="DRAG For Volume"
-            class="volumeBarFilled"
-            :style="{
-              width: this.isDraggingVol
-                ? this.volume + 'px'
-                : this.volume + 'px',
-            }"
-          ></div>
+            class="volumeBar"
+            ref="volumeBar"
+            @mousedown="startVolumeBarDrag"
+            @mousemove="dragVolumeBar"
+            @touchstart="startVolumeBarDrag"
+            @touchmove="dragVolumeBar"
+            @mouseup="endVolumeBarDrag"
+            @touchend="endVolumeBarDrag"
+            @mousewheel="scrollVolumeBar"
+          >
+            <!-- <img src="../../assets/volumeIcon. png" alt="" /> -->
+            <div
+              title="DRAG For Volume"
+              class="volumeBarFilled"
+              :style="{
+                width: this.isDraggingVol
+                  ? this.volume + 'px'
+                  : this.volume + 'px',
+              }"
+            ></div>
+          </div>
+
         </div>
+        
+
+
+
       </div>
     </div>
   </div>
@@ -446,12 +458,48 @@ export default {
   cursor: pointer;
 }
 
-
-.volumeBar {
+.volumeBar__container {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 52rem;
+
+  @include respond(mediumScreen) { // Width < 1400 ?
+
+  }
+  @include respond(tabletScreen) { // Width < 1000 ?
+    margin-left: 37rem;
+  }
+  @include respond(tabletSmallScreen) { // Width < 650 ?
+    margin-left: 0;
+    margin-top: 13rem;
+  }
+  @include respond(phoneScreen) { // Width < 450 ?
+
+  }
+  @include respond(phoneSmallScreen) { // Width < 300 ?
+
+  }
+}
+.volumeBar__iconBox {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+  margin-right: 1rem;
+  overflow: hidden;
+
+  &_icon {
+    height: 100%;
+    width: 100%;
+  }
+}
+.volumeBar {
   height: 10px;
   width: 10rem;
-  margin-left: 55rem;
   background-color: rgb(255, 255, 255, 0.25);
   border-radius: 10px;
   user-select: none;
@@ -462,15 +510,12 @@ export default {
 
   }
   @include respond(tabletScreen) { // Width < 1000 ?
-    margin-left: 40rem;
+
   }
   @include respond(tabletSmallScreen) { // Width < 650 ?
-    width: 7rem;
-    margin-left: 0;
-    margin-top: 13rem;
+    width: 9rem;
   }
   @include respond(phoneScreen) { // Width < 450 ?
-
   }
   @include respond(phoneSmallScreen) { // Width < 300 ?
 
