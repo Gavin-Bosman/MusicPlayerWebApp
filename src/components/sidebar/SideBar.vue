@@ -5,50 +5,33 @@
     <!-- Logo and Name -->
     <div class="brandbox d-flex">
       <div class="brandbox__logobox">
-        <img
-          class="brandbox__logobox_logo"
-          src="../../assets/logo_white_stroke.svg"
-          alt="Audiowave Logo"
-        />
+        <img class="brandbox__logobox_logo" src="../../assets/logo_white_stroke.svg" alt="Audiowave Logo" />
       </div>
       <h1 class="brandbox__name">
-        Audio<span class="brandbox__name_span">wave</span>
+        <!-- Audio<span class="brandbox__name_span">wave</span> -->
       </h1>
 
       <!-- Expand/Collapse Button -->
-      <button
-        class="sidebar__button"
-        :class="{ sidebar__button_position: collapse }"
-        title="Collapse/Expand Sidebar"
-        v-on:click="collapse = !collapse"
-        @click="changeButtonText"
-        style="opacity: 100% !important"
-      >
+      <button class="sidebar__button" :class="{ sidebar__button_position: collapse }" title="Collapse/Expand Sidebar"
+        v-on:click="collapse = !collapse" @click="changeButtonText" style="opacity: 100% !important">
         {{ buttonText }}
       </button>
     </div>
 
     <!-- The Search Bar -->
     <form action="#" class="search">
-      <input
-        class="search__input"
-        type="text"
-        placeholder="Search for songs..."
-        v-model="searchQuery"
-      />
+      <input class="search__input" type="text" placeholder="Search for songs..." v-model="searchQuery" />
       <button class="search__button">
-        <img
-          class="search__button_icon"
-          src="../../assets/search_icon.svg"
-          alt="Search Icon"
-        />
+        <img class="search__button_icon" src="../../assets/search_icon.svg" alt="Search Icon" />
       </button>
     </form>
 
     <!-- Song list begins here -->
     <h2 class="sidebarOptions__header">
-      <span class="sidebarOptions__header_1" v-on:click="optionSelected = !optionSelected, songIsSelected = true" :class="{sidebarOptions__notSelected : optionSelected}">Songs</span>
-      <span class="sidebarOptions__header_2" v-on:click="optionSelected = !optionSelected, songIsSelected = false" :class="{sidebarOptions__selected : optionSelected}">Playlists</span>
+      <span class="sidebarOptions__header_1" v-on:click="optionSelected = !optionSelected, songIsSelected = true"
+        :class="{ sidebarOptions__notSelected: optionSelected }">Songs</span>
+      <span class="sidebarOptions__header_2" v-on:click="optionSelected = !optionSelected, songIsSelected = false"
+        :class="{ sidebarOptions__selected: optionSelected }">Playlists</span>
     </h2>
 
     <!-- Scrollable div -->
@@ -58,14 +41,8 @@
 
       <!-- Fetch List of Songs from Database API -->
       <div v-if="songIsSelected">
-        <SongItem
-          @songPlayed="handleSongPlayed"
-          v-for="song in songs"
-          :key="song.id"
-          :songname="song.fileName"
-          :artistname="song.artist"
-          :coverimageSrc="song.albumCover"
-        />
+        <SongItem @songPlayed="handleSongPlayed" v-for="song in songs" :key="song.id" :songname="song.fileName"
+          :artistname="song.artist" :coverimageSrc="song.albumCover" />
       </div>
 
       <!-- List of Playlist Item(s) -->
@@ -120,19 +97,19 @@ export default {
     },
   },
   computed: {
-  filteredSongs() {
-    if (this.searchQuery) {
-      return this.songs.filter((song) =>
-        song.fileName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        song.artist.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    } else {
-      return this.songs;
-    }
+    filteredSongs() {
+      if (this.searchQuery) {
+        return this.songs.filter((song) =>
+          song.fileName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          song.artist.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+      } else {
+        return this.songs;
+      }
+    },
   },
-},
 
-  
+
 };
 </script>
 
@@ -160,6 +137,7 @@ export default {
     // Width < 1400 ?
     flex: 0 0 40%;
   }
+
   @include respond(tabletScreen) {
     // Width < 1000 ?
     flex: 0 0 95%;
@@ -187,6 +165,7 @@ export default {
     &:hover {
       background-color: $color-grey-darker;
     }
+
     &:active {
       background-color: rgb(22, 22, 22);
     }
@@ -252,9 +231,11 @@ export default {
       color: $color-dark;
       background-color: $color-white;
     }
+
     &::placeholder {
       color: $color-grey-lighter;
     }
+
     &::-webkit-input-placeholder {
       color: $color-grey-lighter;
     }
@@ -272,8 +253,7 @@ export default {
       outline: none;
     }
 
-    &:active {
-    }
+    &:active {}
 
     &_icon {
       width: 100%;
@@ -318,6 +298,7 @@ export default {
   .sidebarOptions__selected {
     background-color: rgba(255, 255, 255, 0.09); // When selected
   }
+
   .sidebarOptions__notSelected {
     background-color: rgba(255, 255, 255, 0); // When NOT selected
   }
@@ -341,10 +322,11 @@ export default {
   overflow: hidden;
   padding: 0px;
 
-  & > *:not(:first-child) {
+  &>*:not(:first-child) {
     opacity: 0;
   }
 }
+
 .sidebar__button_position {
   position: fixed;
   top: 0;
@@ -353,5 +335,4 @@ export default {
   margin-right: 0px;
   margin-bottom: 0px;
 }
-
 </style>
