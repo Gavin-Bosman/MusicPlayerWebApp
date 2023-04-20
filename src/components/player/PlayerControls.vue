@@ -490,12 +490,10 @@ export default {
 
   }
   @include respond(tabletScreen) { // Width < 1000 ?
-    margin-left: 40rem;
+
   }
   @include respond(tabletSmallScreen) { // Width < 650 ?
     width: 7rem;
-    margin-left: 0;
-    margin-top: 13rem;
   }
   @include respond(phoneScreen) { // Width < 450 ?
 
