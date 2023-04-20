@@ -1,6 +1,11 @@
 Members Contribution
 Name: Gavin Bosman
-Contribution:
+Contribution:- Set up Vue project structure
+- Created LoginButton component, as well as the sign-up/login modal menus
+	- Added various error handling methods to prevent invalid sign-ups and logins
+- Added server-side routing functions for accessing user-account documents from MongoDB database
+- Authored and edited the new technology writeup
+- Additionally, worked on resolving various bugs and branch merging errors
 
 Name: DEWAN MOHAMMAD TASINUZZAMAN
 Contribution: - Designed a prototype in Figma and then coded the entire front-end/UI for the app using Vue.js. 
