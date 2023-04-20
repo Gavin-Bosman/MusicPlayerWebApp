@@ -14,6 +14,8 @@
       <h1 class="brandbox__name">
         Audio<span class="brandbox__name_span">wave</span>
       </h1>
+      <!-- <h1 class="brandbox__name">Audio<span class="brandbox__name_span">wave</span></h1> -->
+      <h1 class="brandbox__name">AMPLE</h1>
 
       <!-- Expand/Collapse Button -->
       <button
@@ -34,6 +36,7 @@
         class="search__input"
         type="text"
         placeholder="Search for songs..."
+        v-model="searchQuery"
       />
       <button class="search__button">
         <img
@@ -55,7 +58,7 @@
       <!-- Fetch List of Songs from Database API -->
       <SongItem
         @songPlayed="handleSongPlayed"
-        v-for="song in songs"
+        v-for="song in filteredSongs"
         :key="song.id"
         :songname="song.fileName"
         :artistname="song.artist"
@@ -66,8 +69,10 @@
 </template>
 
 <script>
+
 // import axios from 'axios';
 import SongItem from "./SongItem";
+
 
 export default {
   name: "SideBar",
@@ -85,8 +90,8 @@ export default {
       // songs: [],
       // songURL: '',
       collapse: false, //Collapsed or Not
-
       buttonText: "<",
+      searchQuery: "",
     };
   },
   methods: {
@@ -101,6 +106,20 @@ export default {
       }
     },
   },
+  computed: {
+  filteredSongs() {
+    if (this.searchQuery) {
+      return this.songs.filter((song) =>
+        song.fileName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        song.artist.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    } else {
+      return this.songs;
+    }
+  },
+},
+
+  
 };
 </script>
 
