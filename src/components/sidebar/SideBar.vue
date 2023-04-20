@@ -45,22 +45,32 @@
     </form>
 
     <!-- Song list begins here -->
-    <h2 class="songs__header">Songs</h2>
+    <h2 class="sidebarOptions__header">
+      <span class="sidebarOptions__header_1" v-on:click="optionSelected = !optionSelected, songIsSelected = true" :class="{sidebarOptions__notSelected : optionSelected}">Songs</span>
+      <span class="sidebarOptions__header_2" v-on:click="optionSelected = !optionSelected, songIsSelected = false" :class="{sidebarOptions__selected : optionSelected}">Playlists</span>
+    </h2>
 
     <!-- Scrollable div -->
-    <div class="songslist">
+    <div class="scrollableList">
       <!-- <SongItem songname="Enemy" artistname="Imagine Dragons" coverimageSrc="https://assets.3dtotal.com/arcane-imagine-dragons.edcsyl.jpg"/> -->
       <!-- <SongItem songname="SUFFICE" artistname="NF" :coverimageSrc="require('@/assets/NF-HOPE.png')"/> -->
 
       <!-- Fetch List of Songs from Database API -->
-      <SongItem
-        @songPlayed="handleSongPlayed"
-        v-for="song in songs"
-        :key="song.id"
-        :songname="song.fileName"
-        :artistname="song.artist"
-        :coverimageSrc="song.albumCover"
-      />
+      <div v-if="songIsSelected">
+        <SongItem
+          @songPlayed="handleSongPlayed"
+          v-for="song in songs"
+          :key="song.id"
+          :songname="song.fileName"
+          :artistname="song.artist"
+          :coverimageSrc="song.albumCover"
+        />
+      </div>
+
+      <!-- List of Playlist Item(s) -->
+      <div v-else>
+        <PlaylistItem />
+      </div>
     </div>
   </nav>
 </template>
@@ -68,6 +78,7 @@
 <script>
 // import axios from 'axios';
 import SongItem from "./SongItem";
+import PlaylistItem from "./PlaylistItem.vue";
 
 export default {
   name: "SideBar",
@@ -79,14 +90,18 @@ export default {
   },
   components: {
     SongItem,
+    PlaylistItem
   },
   data() {
     return {
       // songs: [],
       // songURL: '',
-      collapse: false, //Collapsed or Not
 
+      collapse: false, //Collapsed or Not
       buttonText: "<",
+
+      optionSelected: false,
+      songIsSelected: true
     };
   },
   methods: {
@@ -250,8 +265,8 @@ export default {
   }
 }
 
-// Songs
-.songs__header {
+// Options (Song/Playlists)
+.sidebarOptions__header {
   margin-top: 2rem;
   color: $color-white;
   font-weight: 400;
@@ -259,9 +274,39 @@ export default {
   font-size: 1.5rem;
   border-bottom: 1px solid $color-grey-darker;
   transition: all 0.3s ease-out;
+
+  &_1 {
+    padding: 1rem 3rem;
+    background-color: rgba(255, 255, 255, 0.09); // Is SELECTED by DEFAULT
+    cursor: pointer;
+    transition: all .3s ease-out;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  &_2 {
+    padding: 1rem 3rem;
+    background-color: rgba(255, 255, 255, 0); // When not selected
+    cursor: pointer;
+    transition: all .3s ease-out;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  // Dynamic classes for selected or not
+  .sidebarOptions__selected {
+    background-color: rgba(255, 255, 255, 0.09); // When selected
+  }
+  .sidebarOptions__notSelected {
+    background-color: rgba(255, 255, 255, 0); // When NOT selected
+  }
 }
 
-.songslist {
+.scrollableList {
   position: relative;
   margin-top: 2rem;
   width: 100%;
@@ -292,23 +337,4 @@ export default {
   margin-bottom: 0px;
 }
 
-// Songs
-.songs__header {
-  margin-top: 2rem;
-  color: $color-white;
-  font-weight: 400;
-  letter-spacing: 1px;
-  font-size: 1.5rem;
-  border-bottom: 1px solid $color-grey-darker;
-}
-
-.songslist {
-  position: relative;
-  margin-top: 2rem;
-  width: 100%;
-  height: 65%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  box-shadow: inset -4px 0px 10px 1px rgba(0, 0, 0, 0.055);
-}
 </style>

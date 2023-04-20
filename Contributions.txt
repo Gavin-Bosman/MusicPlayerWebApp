@@ -1,0 +1,27 @@
+Members Contribution
+Name: Gavin Bosman (ID: 100781902)
+Contributions: - Set up Vue project structure
+                - Created LoginButton component, as well as the sign-up/login modal menus
+	        - Added various error handling methods to prevent invalid sign-ups and logins
+                - Added server-side routing functions for accessing user-account documents from MongoDB database
+                - Authored and edited the new technology writeup
+                - Additionally, worked on resolving various bugs and branch merging errors
+
+Name: DEWAN MOHAMMAD TASINUZZAMAN (ID: 100791988)
+Contributions: - Designed a prototype in Figma and then coded the entire front-end/UI for the app using Vue.js. 
+                - Created components (eg: functioning side-bar, SongItem, PlayerControls, PlaylistItem etc.), animations etc. where needed and refined the UI.
+                - Finally, made the whole app responsive so it works on all devices.
+
+Name: Mekael Wasti (ID: 100780179)
+Contributions:
+
+Name: .Mohammad (ID: 100755461)
+Contributions:  Added styling for the login and signup buttons as well as their page/modal. 
+Fixed other small issues such as login/signup modal going out of the page when it gives the user suggestions 
+regarding the email/password they provide.
+
+Name: Eric d'souza
+Contributions:
+
+Name: Moharaj Oritro (ID: 100785545)
+Contributions: 
