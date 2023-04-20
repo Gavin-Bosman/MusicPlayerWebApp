@@ -20,7 +20,7 @@ Contributions:  Added styling for the login and signup buttons as well as their 
 Fixed other small issues such as login/signup modal going out of the page when it gives the user suggestions 
 regarding the email/password they provide.
 
-Name: Eric d'souza
+Name: Eric d'souza (ID: 100782796)
 Contributions:
 
 Name: Moharaj Oritro (ID: 100785545)
