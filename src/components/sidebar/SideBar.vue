@@ -14,6 +14,8 @@
       <h1 class="brandbox__name">
         Audio<span class="brandbox__name_span">wave</span>
       </h1>
+      <!-- <h1 class="brandbox__name">Audio<span class="brandbox__name_span">wave</span></h1> -->
+      <h1 class="brandbox__name">AMPLE</h1>
 
       <!-- Expand/Collapse Button -->
       <button
@@ -34,6 +36,7 @@
         class="search__input"
         type="text"
         placeholder="Search for songs..."
+        v-model="searchQuery"
       />
       <button class="search__button">
         <img
@@ -76,6 +79,7 @@
 </template>
 
 <script>
+
 // import axios from 'axios';
 import SongItem from "./SongItem";
 import PlaylistItem from "./PlaylistItem.vue";
@@ -101,7 +105,8 @@ export default {
       buttonText: "<",
 
       optionSelected: false,
-      songIsSelected: true
+      songIsSelected: true,
+      searchQuery: "",
     };
   },
   methods: {
@@ -116,6 +121,20 @@ export default {
       }
     },
   },
+  computed: {
+  filteredSongs() {
+    if (this.searchQuery) {
+      return this.songs.filter((song) =>
+        song.fileName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        song.artist.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    } else {
+      return this.songs;
+    }
+  },
+},
+
+  
 };
 </script>
 
