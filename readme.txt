@@ -1,8 +1,5 @@
-Step 1: Download the zip_file and unzip the file
+# music-player web application
 
-Step 2: go to the command promt and change directory to unzip_file
-
-Step 3:
 ## Project setup
 ```
 npm install
@@ -12,7 +9,11 @@ npm install
 ```
 npm run serve
 ```
-Now copy the link and open your browers. Website will be run in your system.
+
+### Populates the DB
+```
+node uploadToDB.js
+```
 
 ### Compiles and minifies for production
 ```
@@ -23,3 +24,14 @@ npm run build
 ```
 npm run lint
 ```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Authors
+Gavin Bosman - SID: 100781902 <br>
+Dewan Mohammad Tasinuzzaman - SID: 100791988<br>
+Mekael Wasti - SID: 100780179 <br>
+.Mohammad-STD:100755461<br>
+Moharaj Oritro - SID: 100785545 <br>
+Eric D'Souza - SID: 100782796 <br>
