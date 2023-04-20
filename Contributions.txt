@@ -14,7 +14,7 @@ Contributions: - Designed a prototype in Figma and then coded the entire front-e
 		- Fixed bugs and handled branch merging errors/conflicts.
 
 Name: Mekael Wasti (ID: 100780179)
-Contributions:
+Contributions: Back end, dyanmic UI, all player buttons, volume, scrubbing, visualizer, playlist, database, cloud
 
 Name: .Mohammad (ID: 100755461)
 Contributions:  Added styling for the login and signup buttons as well as their page/modal. 
