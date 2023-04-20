@@ -186,6 +186,7 @@ export default {
             if (this.currentIndex + 1 < this.songs.length) {
                 this.$emit("nextSong", this.songs[this.currentIndex + 1].fileName);
             }
+            this.currentState = this.pauseButtonImage;
         },
         previous() {
             if (this.$refs.audioPlayer.currentTime > 4) {
@@ -195,6 +196,7 @@ export default {
             if (this.currentIndex - 1 > -1) {
                 this.$emit("previousSong", this.songs[this.currentIndex - 1].fileName);
             }
+            this.currentState = this.pauseButtonImage;
         },
         // Format Length of Song Timestamps
         formatLengthM(time) {
