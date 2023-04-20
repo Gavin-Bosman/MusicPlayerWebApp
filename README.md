@@ -10,6 +10,11 @@ npm install
 npm run serve
 ```
 
+### Populates the DB
+```
+node uploadToDB.js
+```
+
 ### Compiles and minifies for production
 ```
 npm run build
