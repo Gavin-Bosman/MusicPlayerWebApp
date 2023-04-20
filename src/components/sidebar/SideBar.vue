@@ -8,7 +8,7 @@
         <img class="brandbox__logobox_logo" src="../../assets/logo_white_stroke.svg" alt="Audiowave Logo" />
       </div>
       <h1 class="brandbox__name">
-        <!-- Audio<span class="brandbox__name_span">wave</span> -->
+        Audio<span class="brandbox__name_span">wave</span>
       </h1>
 
       <!-- Expand/Collapse Button -->
