@@ -14,7 +14,15 @@ Contributions: - Designed a prototype in Figma and then coded the entire front-e
 		- Fixed bugs and handled branch merging errors/conflicts.
 
 Name: Mekael Wasti (ID: 100780179)
-Contributions: Back end, dyanmic UI, all player buttons, volume, scrubbing, visualizer, playlist, database, cloud
+Contributions: - Set up the back end, got the songs with required metadata, made a script to populate the db automatically
+	       - Made the server with all the song fetching routes
+	       - Made the UI fully dynamic and update based on user selection of song
+	       - Made streaming and song playback
+	       - Configured all the main player buttons, as well as song scrubbing/seeking on user input
+	       - Volume control on user input
+	       - Made Visualizer take in current playing song
+	       - Playlist population and fetching from and to DB
+	       - Set up cloud possibilites (need to change server connection string to 'mongodb+srv://AMPLE:nk37UlwAY2plxYWG@ample.ytcxexo.mongodb.net/test' to make it 		 connect to an Atlas server
 
 Name: .Mohammad (ID: 100755461)
 Contributions:  Added styling for the login and signup buttons as well as their page/modal. 
