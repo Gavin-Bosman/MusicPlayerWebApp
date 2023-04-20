@@ -3,7 +3,7 @@
 <template>
   <div class="login_container">
     <LoginButton v-if="loggedIn == false" @LogIn="displayAccount" />
-    <AccountMenu v-if="loggedIn == true" />
+    <AccountMenu v-if="loggedIn == true" @signOut="signOut"/>
   </div>
   <div class="player">
     <div class="player__contents">
@@ -358,6 +358,9 @@ export default {
       console.log(user);
       this.loggedIn = true;
     },
+    signOut(loggedIn) {
+      this.loggedIn = loggedIn;
+    }
   },
   components: { LoginButton, AccountMenu },
   computed: {

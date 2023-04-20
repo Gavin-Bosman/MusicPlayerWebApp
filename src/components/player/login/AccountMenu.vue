@@ -9,7 +9,7 @@
         <!-- Div of options that opens/appears when button is clicked -->
         <div class="userAccount__options" :class="{accountMenu__appear:menuVisible}">
             <button class="userAccount__options_option">Account</button>
-            <button class="userAccount__options_option">Sign Out</button>
+            <button @click=signOut() class="userAccount__options_option">Sign Out</button>
         </div>
 
     </div>
@@ -25,7 +25,9 @@ export default {
         };
     },
     methods: {
-
+        signOut() {
+            this.$emit('signOut', false)
+        }
     }
 }
 </script>
